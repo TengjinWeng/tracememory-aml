@@ -30,7 +30,8 @@ class ProtocolTests(unittest.TestCase):
                     with urlopen(req, timeout=10) as response: return response.status, json.load(response)
                 except HTTPError as error: return error.code, json.load(error)
             try:
-                self.assertEqual(call('/health')[1]['version'], '0.1.0-protocol')
+                self.assertEqual(call('/v0.1.0-protocol/health')[1]['version'], '0.1.0-protocol')
+                self.assertEqual(call('/health')[1]['version'], VERSION)
                 self.assertEqual(call(PREFIX+'/health')[1]['version'], VERSION)
                 self.assertIsNone(call(PREFIX+'/health')[1]['llm'])
                 source = [{'type': 'text', 'text': 'A source photograph of a red marker.'}, image((255,0,0))]
@@ -42,11 +43,12 @@ class ProtocolTests(unittest.TestCase):
                 query = {'user_id': payload['user_id'], 'query': [image((255,0,0), level=0)], 'top_k': 1}
                 result = call(PREFIX+'/search', query)
                 self.assertEqual(result[0], 200); self.assertEqual(result[1]['data'][0]['content'], source)
-                self.assertEqual(call('/search', query), (200, {'data': []}))
+                self.assertEqual(call('/v0.1.0-protocol/search', query), (200, {'data': []}))
+                self.assertEqual(call('/search', query)[1]['data'][0]['content'], source)
                 query['user_id'] = 'different-scope'
                 self.assertEqual(call(PREFIX+'/search', query), (200, {'data': []}))
                 payload['user_id'] = 'legacy-scope'
-                self.assertEqual(call('/add', payload)[0], 200)
+                self.assertEqual(call('/v0.1.0-protocol/add', payload)[0], 200)
                 self.assertEqual(len(legacy.store.search({'user_id':'legacy-scope','query':'red marker','top_k':1})['data']),1)
             finally:
                 server.store.closed.set(); server.store.thread.join(timeout=3)

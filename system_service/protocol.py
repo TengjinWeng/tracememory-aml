@@ -12,6 +12,7 @@ from system_service.store import SystemStore
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = '0.3.1-protocol'
 PREFIX = '/v0.3.1-protocol'
+LEGACY_PREFIX = '/v0.1.0-protocol'
 
 
 class Handler(MemoryHandler):
@@ -46,22 +47,25 @@ class Handler(MemoryHandler):
             connection.close()
 
     def do_GET(self):
-        if self.path == PREFIX+'/health':
+        if self.path in ('/health', PREFIX+'/health'):
             self.respond(200, {'status': 'ok', 'version': VERSION, 'mode': 'model-free-protocol',
                                'llm': None, 'embedding': None})
-        elif self.path.startswith(PREFIX+'/'):
-            self.respond(404, {'detail': {'reason': 'not_found'}})
-        else:
+        elif self.path.startswith(LEGACY_PREFIX+'/'):
+            self.path = self.path[len(LEGACY_PREFIX):]
             self.legacy()
+        else:
+            self.respond(404, {'detail': {'reason': 'not_found'}})
 
     def do_POST(self):
-        if self.path in (PREFIX+'/add', PREFIX+'/search'):
-            self.path = self.path[len(PREFIX):]
+        if self.path in ('/add', '/search', PREFIX+'/add', PREFIX+'/search'):
+            if self.path.startswith(PREFIX+'/'):
+                self.path = self.path[len(PREFIX):]
             super().do_POST()
-        elif self.path.startswith(PREFIX+'/'):
-            self.respond(404, {'detail': {'reason': 'not_found'}})
-        else:
+        elif self.path.startswith(LEGACY_PREFIX+'/'):
+            self.path = self.path[len(LEGACY_PREFIX):]
             self.legacy()
+        else:
+            self.respond(404, {'detail': {'reason': 'not_found'}})
 
 
 def make_server(root=ROOT, port=18090, legacy_port=18086):

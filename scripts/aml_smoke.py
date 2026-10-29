@@ -2,8 +2,12 @@
 import argparse
 from datetime import datetime, timezone
 import json
+from io import BytesIO
+import os
 from pathlib import Path
 import re
+import subprocess
+import tempfile
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote
 from urllib.request import Request, urlopen
@@ -16,6 +20,15 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://agentmemoryleaderboard.ai"
 RECEIPT = ROOT / "docs/官方Smoke.private.json"
+
+
+def public_health(url):
+    if os.environ.get('AML_HTTP_TRANSPORT') == 'curl':
+        result = subprocess.run(['curl','--http1.1','--fail','--silent','--show-error','--max-time','20',url],
+                                capture_output=True,text=True,timeout=25)
+        if result.returncode: raise URLError('public health connection failed')
+        return json.loads(result.stdout)
+    with urlopen(url,timeout=20) as response: return json.load(response)
 
 
 def receipt_for_version(version_id, base=RECEIPT):
@@ -32,11 +45,38 @@ class Client:
         self.key = key
 
     def api(self, path, payload=None):
+        if os.environ.get('AML_HTTP_TRANSPORT') == 'curl':
+            return self._curl(path, payload)
         data = None if payload is None else json.dumps(payload).encode()
         headers = {"Content-Type": "application/json", "X-Leaderboard-Api-Key": self.key,
                    "Origin": ORIGIN, "Referer": ORIGIN + "/evaluation", "User-Agent": "Mozilla/5.0"}
         with urlopen(Request(ORIGIN + path, data=data, headers=headers), timeout=45) as response:
             return json.load(response)
+
+    def _curl(self, path, payload):
+        # Avoid putting credentials in argv or logs. Do not retry mutations or change TLS verification.
+        with tempfile.TemporaryDirectory(dir=ROOT/'secrets', prefix='aml-http-') as folder:
+            directory = Path(folder); os.chmod(directory, 0o700)
+            lines = ['url = '+json.dumps(ORIGIN+path),
+                     'header = '+json.dumps('X-Leaderboard-Api-Key: '+self.key),
+                     'header = "Content-Type: application/json"',
+                     'header = '+json.dumps('Origin: '+ORIGIN),
+                     'header = '+json.dumps('Referer: '+ORIGIN+'/evaluation'),
+                     'user-agent = "Mozilla/5.0"']
+            if payload is not None:
+                data = directory/'body.json'; data.write_text(json.dumps(payload)); data.chmod(0o600)
+                lines.append('data-binary = '+json.dumps('@'+str(data), ensure_ascii=False))
+            config = directory/'curl.conf'; config.write_text('\n'.join(lines)+'\n'); config.chmod(0o600)
+            output = directory/'response.json'; output.touch(mode=0o600)
+            result = subprocess.run(['curl','--http1.1','--silent','--show-error','--max-time','45',
+                                     '--config',str(config),'--output',str(output),'--write-out','%{http_code}'],
+                                    capture_output=True,text=True,timeout=50)
+            if result.returncode or not result.stdout.isdecimal():
+                raise URLError('secure HTTP transport failed; no automatic retry')
+            code = int(result.stdout); body = output.read_bytes()
+            if not 200 <= code < 300:
+                raise HTTPError(ORIGIN+path,code,'official API returned an error',{},BytesIO(body))
+            return json.loads(body)
 
 
 def smoke_payload(version_id, contract=None):
@@ -113,10 +153,9 @@ def run(start=False, version_id=None, endpoint_prefix=''):
         raise SystemExit("Multimodal Smoke has no enabled healthy route")
     if admission.get("bound") is not True or admission.get("smoke_allowed") is not True:
         raise SystemExit("Current version has no confirmed Smoke admission; check contract/quota/binding")
-    with urlopen(base + "/health", timeout=20) as response:
-        health = json.load(response)
-        if health.get("status") != "ok" or health.get('version') != version.get('version_name'):
-            raise SystemExit("Deployment is not healthy")
+    health = public_health(base+'/health')
+    if health.get("status") != "ok" or health.get('version') != version.get('version_name'):
+        raise SystemExit("Deployment is not healthy")
     receipt = {"state": "sending", "created_at": datetime.now(timezone.utc).isoformat(),
                "version_id": identifier, "contract": contract, "payload": smoke_payload(identifier,contract)}
     write_private(receipt_path, receipt)
