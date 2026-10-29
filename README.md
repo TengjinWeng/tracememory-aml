@@ -1,10 +1,41 @@
 # TraceMemory
 
-Multimodal memory API protocol baseline for the AML challenge. Maintainer: wengtengjin.
+Multimodal memory system for the AML challenge. Maintainer: wengtengjin.
 
-Status: integration access requested; organizer review pending. **No official Smoke or Full result yet.**
+Status: academic access approved for the retained 0.1.0-protocol version;
+its official Multimodal Smoke passed. **No Full result yet.**
 
-## Run
+## Integrated system (0.3.0-system)
+
+The current development system connects durable Add/Search storage, real image
+description/OCR through Codex CLI (`gpt-5.6-sol`), local Qwen3 text embeddings,
+hybrid retrieval, source-image evidence, scoped caches, retention and process recovery.
+It listens on server loopback port 18089; its embedding dependency uses 18088.
+
+```sh
+bash scripts/install_system.sh
+.venv-candidate/bin/python -m system_service.manage status
+.venv-candidate/bin/python -m system_service.manage check
+.venv-candidate/bin/python -m system_service.manage preflight
+```
+
+See [complete system delivery](docs/完整系统交付.md) and
+[rules and implementation boundaries](docs/规则核对与系统边界.md).
+Development uses only self-authored `dev:` scopes; it does not silently claim
+academic model compliance. The specified-model mode uses its own database and
+requires the actual specified model APIs. Official version binding, Smoke,
+capacity and cost approval remain separate gates.
+
+Validation: 20 protocol tests, 27 candidate tests and 17 integrated-service tests
+pass, together with a real-model self-authored image/text integration flow.
+The small known fixtures and warm-cache reruns are not official scores or a
+generalization/performance claim. Reports: `docs/system-model-validation.json`
+and `docs/system-flow-check.json`.
+
+The previously submitted 0.1.0-protocol service is retained. The following
+sections describe that baseline, its historical diagnostics and its limits.
+
+## Retained protocol baseline: run
 
 Python 3.9+; no third-party packages, model keys or GPU required for this baseline.
 
@@ -64,9 +95,9 @@ bandwidth estimates, limitations and unfinished algorithm work.
 `scripts/aml_smoke.py` prepares a guarded Multimodal-only Smoke client based on
 the observed official UI contract. Its default operation is read-only; it
 requires a verified academic AML key and a matching admitted version before
-starting any Smoke. It has no Full submission option. This client has not yet
-been exercised against authenticated official APIs and must be checked against
-the live contract once access is approved.
+starting any Smoke. It has no Full submission option. This client has now completed
+one authenticated official Multimodal Smoke. It reads concurrency bounds from the
+live contract and keeps separate receipts when explicitly selecting a new version.
 
 ## API
 
@@ -82,7 +113,9 @@ clear distinction between offline improvements and unverified real-model quality
 - JPEG/PNG/WebP inline Base64 images only, 10 MiB each and 30 MiB per Add.
 - Maximum HTTP request body: 48 MiB; socket timeout: 60 seconds.
 - Maximum concurrently processed requests: 8; overflow returns 429.
-- Proposed initial platform concurrency: Add 1 / Search 1, pending capacity checks.
+- The current official Multimodal job contract has a minimum concurrency of 16.
+  A small 16-client public burst passed with two retryable responses; this is not
+  certification of the retained baseline for Full scale.
 - SQLite durable disk and WAL; no request/evidence/credential logging.
 
 ## Rules and next gates

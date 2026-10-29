@@ -28,7 +28,7 @@ subset: exact `model`, `input` string or list, and optional `input_type` set to
 by the model card; documents do not. Results include ordered `data[].embedding`.
 
 The initial service deliberately uses CPU with four inference threads. Maximum
-batch size is eight, with 2000 characters and 512 tokens per item; longer inputs
+batch size is eight, with 2000 characters and 2048 tokens per item; longer inputs
 are rejected rather than silently truncated. These limits support small probes,
 not Full evaluation capacity. Requests are not logged or cached. Loading uses
 only local Safetensors and no remote model code; startup cannot download files.

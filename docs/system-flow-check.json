@@ -1,0 +1,40 @@
+{
+  "scope": "self-authored development integration; not an AML score or held-out quality estimate",
+  "version": "0.3.0-system",
+  "mode": "development",
+  "vision_model": "gpt-5.6-sol",
+  "checks": [
+    {
+      "kind": "text_query",
+      "source_rank": 1
+    },
+    {
+      "kind": "text_query",
+      "source_rank": 1
+    },
+    {
+      "kind": "text_query",
+      "source_rank": 1
+    },
+    {
+      "kind": "different_pixels_image_query",
+      "source_rank": 1,
+      "original_image_preserved": true
+    }
+  ],
+  "idempotent_model_calls": 0,
+  "cross_user_isolation": "passed",
+  "authentication": "passed",
+  "conflicting_request_id": "409",
+  "unapproved_evaluation_scope": "403",
+  "restart_persistence": "passed",
+  "readiness": {
+    "local_embedding": true,
+    "vision_attempt_budget": true,
+    "vision_validated": true
+  },
+  "cli_attempts_during_flow": 0,
+  "elapsed_seconds": 0.92,
+  "new_api_key_used": false,
+  "official_evaluation_started": false
+}

@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "caption": {"type": "string"},
+    "ocr": {"type": "string"},
+    "entities": {"type": "array", "items": {"type": "string"}},
+    "facts": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": ["caption", "ocr", "entities", "facts"],
+  "additionalProperties": false
+}

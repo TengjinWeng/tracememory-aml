@@ -1,7 +1,9 @@
 # 模型接入方式与指定模型开发额度
 
 开发阶段可以先复用服务器已登录的 Codex CLI，并部署开源 Embedding；不必先为下表充值。
-Codex 的真实调用可用性与剩余额度尚未验证。本地 Embedding 实验在 `experiments/local_embedding/`，
+Codex 的 gpt-5.6-sol 真实图片/OCR 调用和完整开发链路现已验证，账号剩余额度仍以账户实际状态为准。
+整套服务见 `完整系统交付.md`；开发 CLI 默认最多 20 次尝试，失败尝试也计数，不自动重置。
+本地 Embedding 实验在 `experiments/local_embedding/`，
 使用 Qwen3-Embedding-0.6B；模型不同，不冒充 text-embedding-v4，也未切换正式参评接口。
 本地测试使用自建数据，不能把它的结果当作指定模型结果或官方成绩。
 

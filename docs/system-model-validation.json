@@ -1,0 +1,9 @@
+{
+  "scope": "self-authored receipt image, actual CLI response, not official evaluation",
+  "vision_model": "gpt-5.6-sol",
+  "success": true,
+  "ocr_has_city": true,
+  "ocr_has_code": true,
+  "elapsed_seconds": 4.39,
+  "api_key_used": false
+}

@@ -1,0 +1,8 @@
+{
+  "scope": "self-authored small HTTP burst; not an official or Full capacity result",
+  "clients": 16,
+  "roundtrips": 16,
+  "all_passed": true,
+  "retryable_responses": 2,
+  "elapsed_seconds": 1.13
+}

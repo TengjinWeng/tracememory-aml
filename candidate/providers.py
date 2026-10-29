@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 import sqlite3
 import threading
+import weakref
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -39,6 +40,7 @@ class SpecifiedModels:
         self.path = str(cache_path)
         Path(cache_path).parent.mkdir(parents=True, exist_ok=True)
         self.lock = threading.RLock()
+        self.request_locks = weakref.WeakValueDictionary()
         self.transport = transport or self._http
         with self.db() as db:
             db.executescript("""
@@ -84,8 +86,13 @@ class SpecifiedModels:
         url = base + ("/chat/completions" if llm else "/embeddings")
         identity = hashlib.sha256(json.dumps([url, payload], sort_keys=True, ensure_ascii=False).encode()).hexdigest()
         limit = int(self.config.get("MAX_LLM_REQUESTS" if llm else "MAX_EMBEDDING_REQUESTS", "20" if llm else "100"))
-        # One local candidate process; SQLite transaction also protects persistent caps across processes.
+        # Same-key work is deduplicated, while independent users/requests can call providers concurrently.
         with self.lock:
+            lock_key=(user_id,kind,identity)
+            request_lock=self.request_locks.get(lock_key)
+            if request_lock is None:
+                request_lock=threading.RLock();self.request_locks[lock_key]=request_lock
+        with request_lock:
             with self.db() as db:
                 db.execute("BEGIN IMMEDIATE")
                 cached = db.execute("SELECT result FROM api_cache WHERE user_id=? AND kind=? AND hash=?", (user_id, kind, identity)).fetchone()

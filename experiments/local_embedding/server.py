@@ -32,8 +32,8 @@ class Encoder:
             texts = [f"Instruct: {INSTRUCTION}\nQuery: {text}" for text in texts]
         with self.lock, torch.inference_mode():
             batch = self.tokenizer(texts, padding=True, truncation=False, return_tensors="pt")
-            if batch["input_ids"].shape[1] > 512:
-                raise ValueError("development service limit is 512 tokens per input")
+            if batch["input_ids"].shape[1] > 2048:
+                raise ValueError("development service limit is 2048 tokens per input")
             # With left padding, the final position is the final real token.
             hidden = self.model(**batch).last_hidden_state[:, -1]
             vectors = torch.nn.functional.normalize(hidden, p=2, dim=1).tolist()

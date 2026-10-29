@@ -30,9 +30,10 @@ def rrf(scores, ordered, weight=1.0):
 
 
 class CandidateStore(MemoryStore):
-    def __init__(self, path, provider=None, max_images=4, max_image_bytes=2 * 1024 * 1024):
+    def __init__(self, path, provider=None, max_images=4, max_image_bytes=2 * 1024 * 1024, chunk_chars=1200):
         super().__init__(path)
         self.provider, self.max_images, self.max_image_bytes = provider, max_images, max_image_bytes
+        self.chunk_chars = chunk_chars
         self.ingest_lock = threading.RLock()
         with self.connect() as db:
             db.execute("CREATE TABLE IF NOT EXISTS candidate_features (id TEXT PRIMARY KEY, user_id TEXT NOT NULL, terms TEXT NOT NULL, entities TEXT NOT NULL, pixels TEXT NOT NULL, vectors TEXT NOT NULL)")
@@ -40,29 +41,32 @@ class CandidateStore(MemoryStore):
 
     def add(self, payload):
         with self.ingest_lock:
-            # Base validation/atomic raw persistence occurs before any paid operation.
-            # No successful acknowledgement is returned until every index entry commits.
-            result = super().add(payload)
-            with self.connect() as db:
-                rows = db.execute("SELECT m.id,m.content FROM memories m LEFT JOIN candidate_features f ON m.id=f.id AND m.user_id=f.user_id WHERE m.user_id=? AND m.request_id=? AND f.id IS NULL ORDER BY m.position",
-                                  (payload["user_id"], payload["request_id"])).fetchall()
-            prepared = []
-            for identity, encoded in rows:
-                content = json.loads(encoded)
-                text, _, _ = validate_content(content)
-                try:
-                    pixels = pixel_fingerprints(content)
-                except Exception as error:
-                    raise ContractError("candidate could not decode image", 422) from error
-                description = self.provider.describe(payload["user_id"], content) if self.provider else {}
-                derived = "\n".join([text, description.get("caption", ""), description.get("ocr", "")] + description.get("facts", []))[:16000]
-                names = set(entities(derived)) | {x.casefold() for x in description.get("entities", []) if x.strip()}
-                chunks = [derived[i:i + 1200] for i in range(0, len(derived), 1200) if derived[i:i + 1200].strip()]
-                vectors = self.provider.embed(payload["user_id"], chunks) if self.provider and chunks else []
-                prepared.append((identity, payload["user_id"], canonical(tokenize(derived)), canonical(sorted(names)), canonical(pixels), canonical(vectors)))
-            with self.connect() as db:
-                db.executemany("INSERT INTO candidate_features VALUES (?,?,?,?,?,?)", prepared)
-            return result
+            return self.index_payload(payload)
+
+    def index_payload(self,payload):
+        # Caller serializes writes for this user. Raw records are not searchable until features commit.
+        result = super().add(payload)
+        with self.connect() as db:
+            rows = db.execute("SELECT m.id,m.content FROM memories m LEFT JOIN candidate_features f ON m.id=f.id AND m.user_id=f.user_id WHERE m.user_id=? AND m.request_id=? AND f.id IS NULL ORDER BY m.position",
+                              (payload["user_id"], payload["request_id"])).fetchall()
+        prepared = []
+        for identity, encoded in rows:
+            content = json.loads(encoded)
+            text, _, _ = validate_content(content)
+            try:
+                pixels = pixel_fingerprints(content)
+            except Exception as error:
+                raise ContractError("candidate could not decode image", 422) from error
+            description = self.provider.describe(payload["user_id"], content) if self.provider else {}
+            derived = "\n".join([text, description.get("caption", ""), description.get("ocr", "")] + description.get("facts", []))[:16000]
+            names = set(entities(derived)) | {x.casefold() for x in description.get("entities", []) if x.strip()}
+            width = self.chunk_chars
+            chunks = [derived[i:i + width] for i in range(0, len(derived), width) if derived[i:i + width].strip()]
+            vectors = self.provider.embed(payload["user_id"], chunks) if self.provider and chunks else []
+            prepared.append((identity, payload["user_id"], canonical(tokenize(derived)), canonical(sorted(names)), canonical(pixels), canonical(vectors)))
+        with self.connect() as db:
+            db.executemany("INSERT INTO candidate_features VALUES (?,?,?,?,?,?)", prepared)
+        return result
 
     def search(self, payload):
         user = required_string(payload.get("user_id"), "user_id")
@@ -81,6 +85,10 @@ class CandidateStore(MemoryStore):
             return {"data": []}
         docs = {row[0]: {"created": row[1], "terms": json.loads(row[2]), "entities": set(json.loads(row[3])),
                          "pixels": set(json.loads(row[4])), "vectors": json.loads(row[5])} for row in rows}
+        matches = sorted(identity for identity, doc in docs.items() if query_pixels & doc["pixels"])
+        if self.provider and query_pixels and not matches:
+            description = self.provider.describe(user, payload["query"])
+            text += "\n" + description.get("caption", "") + "\n" + description.get("ocr", "")
         query = {t for t in tokenize(text) if t not in STOP}
         average = sum(sum(d["terms"].values()) for d in docs.values()) / len(docs) or 1
         df = {q: sum(q in d["terms"] for d in docs.values()) for q in query}
@@ -96,18 +104,14 @@ class CandidateStore(MemoryStore):
                 lexical[identity] = score
         fused = collections.defaultdict(float)
         rrf(fused, sorted(lexical, key=lambda x: (-lexical[x], x))[:128])
-        matches = sorted(identity for identity, doc in docs.items() if query_pixels & doc["pixels"])
         rrf(fused, matches, 2.0)
         if self.provider:
             # Canonical pixel matches already identify known images; avoid another paid vision call.
-            if query_pixels and not matches:
-                description = self.provider.describe(user, payload["query"])
-                text += "\n" + description.get("caption", "") + "\n" + description.get("ocr", "")
             if text.strip():
                 vector = self.provider.embed(user, [text[:1200]])[0]
-                dense = {identity: max((cosine(vector, v) for v in doc["vectors"]), default=-1) for identity, doc in docs.items()}
-                dense = {identity: score for identity, score in dense.items() if score > .05}
+                dense = self.rank_dense(user, docs, vector)
                 rrf(fused, sorted(dense, key=lambda x: (-dense[x], x))[:128])
+                self.refine_scores(fused, dense, lexical, docs, query, matches)
         # Only rare source entities from actual top candidates can form second-hop links.
         entity_df = collections.Counter(name for doc in docs.values() for name in doc["entities"])
         seeds = sorted(fused, key=lambda x: (-fused[x], x))[:5]
@@ -160,3 +164,11 @@ class CandidateStore(MemoryStore):
                 if len(results) >= k:
                     break
         return {"data": results}
+
+    def rank_dense(self, user, docs, vector):
+        scores = {identity: max((cosine(vector, v) for v in doc["vectors"]), default=-1)
+                  for identity, doc in docs.items()}
+        return {identity: score for identity, score in scores.items() if score > .05}
+
+    def refine_scores(self, fused, dense, lexical, docs, query, matches):
+        """Optional integrated-service calibration; offline candidate keeps its original RRF."""
