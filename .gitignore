@@ -1,5 +1,6 @@
 .env
 tools/
+.venv-candidate/
 ._*
 secrets/
 data/*
@@ -9,6 +10,7 @@ __pycache__/
 *.log
 *.pid
 .DS_Store
+data-candidate/
 docs/私人报名信息.json
 docs/部署记录.md
 docs/测试结果.txt

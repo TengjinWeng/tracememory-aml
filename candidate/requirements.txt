@@ -1,0 +1,2 @@
+# Python 3.10; use a separate virtual environment from the live service.
+Pillow>=12.3.0,<13

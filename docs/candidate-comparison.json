@@ -1,0 +1,179 @@
+{
+  "official_evaluation": false,
+  "model_calls": 0,
+  "baseline": {
+    "case_count": 7,
+    "noise_records_per_case": 180,
+    "recall_at_1": 0.42857142857142855,
+    "recall_at_5": 0.5714285714285714,
+    "mrr_at_100": 0.5088888888888888,
+    "cases": [
+      {
+        "case": "en_exact",
+        "category": "english_exact",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "zh_exact",
+        "category": "chinese_exact",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "synonym",
+        "category": "semantic_paraphrase",
+        "rank_within_100": null,
+        "recall_at_1": 0,
+        "recall_at_5": 0,
+        "reciprocal_rank": 0,
+        "positive_score": false,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "temporal",
+        "category": "latest_state",
+        "rank_within_100": 2,
+        "recall_at_1": 0,
+        "recall_at_5": 1,
+        "reciprocal_rank": 0.5,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "cross_session",
+        "category": "cross_session_evidence",
+        "rank_within_100": 25,
+        "recall_at_1": 0,
+        "recall_at_5": 0,
+        "reciprocal_rank": 0.04,
+        "positive_score": false,
+        "bridge_evidence_rank": 1,
+        "all_required_evidence_at_5": false
+      },
+      {
+        "case": "exact_image",
+        "category": "identical_image_bytes",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "reencoded_image",
+        "category": "same_pixels_different_encoding",
+        "rank_within_100": 45,
+        "recall_at_1": 0,
+        "recall_at_5": 0,
+        "reciprocal_rank": 0.022222222222222223,
+        "positive_score": false,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      }
+    ],
+    "limitations": "Tiny synthetic diagnostic suite; includes constructed temporal confounder. Not an official benchmark or answer accuracy."
+  },
+  "offline_candidate": {
+    "case_count": 7,
+    "noise_records_per_case": 180,
+    "recall_at_1": 0.7142857142857143,
+    "recall_at_5": 0.8571428571428571,
+    "mrr_at_100": 0.7857142857142857,
+    "cases": [
+      {
+        "case": "en_exact",
+        "category": "english_exact",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "zh_exact",
+        "category": "chinese_exact",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "synonym",
+        "category": "semantic_paraphrase",
+        "rank_within_100": null,
+        "recall_at_1": 0,
+        "recall_at_5": 0,
+        "reciprocal_rank": 0,
+        "positive_score": false,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "temporal",
+        "category": "latest_state",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "cross_session",
+        "category": "cross_session_evidence",
+        "rank_within_100": 2,
+        "recall_at_1": 0,
+        "recall_at_5": 1,
+        "reciprocal_rank": 0.5,
+        "positive_score": true,
+        "bridge_evidence_rank": 1,
+        "all_required_evidence_at_5": true
+      },
+      {
+        "case": "exact_image",
+        "category": "identical_image_bytes",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "reencoded_image",
+        "category": "same_pixels_different_encoding",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      }
+    ],
+    "limitations": "Tiny synthetic diagnostic suite; includes constructed temporal confounder. Not an official benchmark or answer accuracy."
+  },
+  "limitation": "Seven known synthetic diagnostics; no real VLM/embedding efficacy or generalization claim."
+}

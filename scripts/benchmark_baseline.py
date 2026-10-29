@@ -33,7 +33,7 @@ def percentile(values, fraction):
     return values[min(len(values) - 1, max(0, int(len(values) * fraction + 0.999) - 1))]
 
 
-def quality(directory):
+def quality(directory, store_class=MemoryStore):
     cases = [
         ("en_exact", "english_exact", "Alex recommended Lake Cafe after cycling.", "Lake Cafe", None),
         ("zh_exact", "chinese_exact", "小王在杭州骑车后推荐湖边咖啡馆。", "小王 湖边咖啡馆", None),
@@ -45,7 +45,7 @@ def quality(directory):
     ]
     rows = []
     for case_id, category, target, query, picture in cases:
-        store = MemoryStore(directory / (case_id + ".sqlite3"))
+        store = store_class(directory / (case_id + ".sqlite3"))
         user = "synthetic:quality:" + case_id
         messages = [{"role": "user", "content": "Synthetic unrelated ledger item %d." % i} for i in range(180)]
         if case_id == "temporal":

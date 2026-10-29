@@ -70,6 +70,11 @@ the live contract once access is approved.
 
 ## API
 
+An isolated [v0.2 candidate](candidate/README.md) adds decoded-pixel identity,
+entity expansion, recency preferences and optional specified-model fusion. It
+does not replace the reviewed service. See its README for test scope and the
+clear distinction between offline improvements and unverified real-model quality.
+
 - `GET /health`: liveness and version, no credential required.
 - `POST /add`: `request_id`, `user_id`, `session_id`, ordered `messages`.
 - `POST /search`: `user_id`, `query`, `top_k`; optional top-level `options`.
