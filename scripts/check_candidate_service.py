@@ -2,6 +2,8 @@
 import json
 from pathlib import Path
 import sys
+import time
+from urllib.error import URLError
 from urllib.request import Request, urlopen
 from uuid import uuid4
 
@@ -22,7 +24,14 @@ def call(path, payload=None):
         return json.load(response)
 
 
-health = call("/health")
+for attempt in range(20):
+    try:
+        health = call("/health")
+        break
+    except URLError:
+        time.sleep(.25)
+else:
+    raise SystemExit("Candidate health did not become ready; no Add/Search attempted")
 assert health["version"] == "0.2.0-candidate"
 assert health["mode"] == "offline-lexical-pixel-graph", "This checker must not accidentally trigger model billing"
 user = "synthetic:candidate-service:" + uuid4().hex
