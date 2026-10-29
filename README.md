@@ -2,7 +2,7 @@
 
 Multimodal memory API protocol baseline for the AML challenge. Maintainer: wengtengjin.
 
-Status: development / protocol validation. **Not an official Smoke result, registered entry, or scored submission.**
+Status: integration access requested; organizer review pending. **No official Smoke or Full result yet.**
 
 ## Run
 
@@ -48,6 +48,25 @@ through the protocol and retrieve them using accompanying text or exact-image
 matches. It must not be presented as a competitive multimodal algorithm.
 Search currently scans lightweight metadata for a single user; full-suite
 scale and sustained concurrency have not been certified.
+
+## Synthetic diagnostics
+
+`python3 scripts/benchmark_baseline.py --output docs/baseline-benchmark.json`
+runs isolated synthetic retrieval cases and loopback HTTP capacity checks. It
+does not touch the deployed database, call model APIs, or consume AML quotas.
+The current seven-case suite exposes failures in semantic paraphrases,
+cross-session evidence expansion, latest-state ranking and re-encoded images.
+It is a diagnostic fixture, not a statistically representative benchmark.
+
+See [diagnostic report](docs/基线诊断与待办.md) for measured latency,
+bandwidth estimates, limitations and unfinished algorithm work.
+
+`scripts/aml_smoke.py` prepares a guarded Multimodal-only Smoke client based on
+the observed official UI contract. Its default operation is read-only; it
+requires a verified academic AML key and a matching admitted version before
+starting any Smoke. It has no Full submission option. This client has not yet
+been exercised against authenticated official APIs and must be checked against
+the live contract once access is approved.
 
 ## API
 

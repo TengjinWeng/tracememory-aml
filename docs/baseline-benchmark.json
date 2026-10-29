@@ -1,0 +1,146 @@
+{
+  "created_at": "2026-10-29T06:54:45.801930+00:00",
+  "official_evaluation": false,
+  "models_called": false,
+  "external_service_calls": false,
+  "quality": {
+    "case_count": 7,
+    "noise_records_per_case": 180,
+    "recall_at_1": 0.42857142857142855,
+    "recall_at_5": 0.5714285714285714,
+    "mrr_at_100": 0.5088888888888888,
+    "cases": [
+      {
+        "case": "en_exact",
+        "category": "english_exact",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "zh_exact",
+        "category": "chinese_exact",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "synonym",
+        "category": "semantic_paraphrase",
+        "rank_within_100": null,
+        "recall_at_1": 0,
+        "recall_at_5": 0,
+        "reciprocal_rank": 0,
+        "positive_score": false,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "temporal",
+        "category": "latest_state",
+        "rank_within_100": 2,
+        "recall_at_1": 0,
+        "recall_at_5": 1,
+        "reciprocal_rank": 0.5,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "cross_session",
+        "category": "cross_session_evidence",
+        "rank_within_100": 25,
+        "recall_at_1": 0,
+        "recall_at_5": 0,
+        "reciprocal_rank": 0.04,
+        "positive_score": false,
+        "bridge_evidence_rank": 1,
+        "all_required_evidence_at_5": false
+      },
+      {
+        "case": "exact_image",
+        "category": "identical_image_bytes",
+        "rank_within_100": 1,
+        "recall_at_1": 1,
+        "recall_at_5": 1,
+        "reciprocal_rank": 1.0,
+        "positive_score": true,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      },
+      {
+        "case": "reencoded_image",
+        "category": "same_pixels_different_encoding",
+        "rank_within_100": 45,
+        "recall_at_1": 0,
+        "recall_at_5": 0,
+        "reciprocal_rank": 0.022222222222222223,
+        "positive_score": false,
+        "bridge_evidence_rank": null,
+        "all_required_evidence_at_5": null
+      }
+    ],
+    "limitations": "Tiny synthetic diagnostic suite; includes constructed temporal confounder. Not an official benchmark or answer accuracy."
+  },
+  "capacity": [
+    {
+      "records": 100,
+      "add_seconds": 0.0364,
+      "search_serial_p50_ms": 12.339,
+      "search_serial_p95_ms": 13.58,
+      "search_concurrency4_p95_ms": 93.587,
+      "concurrency4_queries_per_second": 49.96,
+      "response_bytes_mean": 25165,
+      "database_bytes": 73728
+    },
+    {
+      "records": 1000,
+      "add_seconds": 0.2227,
+      "search_serial_p50_ms": 25.502,
+      "search_serial_p95_ms": 27.136,
+      "search_concurrency4_p95_ms": 257.232,
+      "concurrency4_queries_per_second": 18.28,
+      "response_bytes_mean": 25397,
+      "database_bytes": 544768
+    },
+    {
+      "records": 5000,
+      "add_seconds": 1.6498,
+      "search_serial_p50_ms": 72.701,
+      "search_serial_p95_ms": 74.385,
+      "search_concurrency4_p95_ms": 941.756,
+      "concurrency4_queries_per_second": 5.4,
+      "response_bytes_mean": 25176,
+      "database_bytes": 2646016
+    }
+  ],
+  "bandwidth_scenarios": [
+    {
+      "images_per_search": 1,
+      "decoded_kib_each": 256,
+      "base64_response_bytes_lower_bound": 349528,
+      "searches_per_1GB_upper_bound": 2861
+    },
+    {
+      "images_per_search": 10,
+      "decoded_kib_each": 256,
+      "base64_response_bytes_lower_bound": 3495280,
+      "searches_per_1GB_upper_bound": 286
+    },
+    {
+      "images_per_search": 20,
+      "decoded_kib_each": 512,
+      "base64_response_bytes_lower_bound": 13981040,
+      "searches_per_1GB_upper_bound": 71
+    }
+  ],
+  "bandwidth_note": "Estimates only; 1 GB modeled as 1,000,000,000 bytes. Excludes JSON, headers and other responses; actual allowance usage may differ. No realistic-size image load test was run."
+}
