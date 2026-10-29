@@ -71,7 +71,8 @@ def main():
             data=json.dumps({"contact_email": info["contact_email"]}).encode(),
             headers={"Content-Type": "application/json",
                      "Origin": "https://agentmemoryleaderboard.ai",
-                     "Referer": "https://agentmemoryleaderboard.ai/evaluation"}, method="POST",
+                     "Referer": "https://agentmemoryleaderboard.ai/evaluation",
+                     "User-Agent": "Mozilla/5.0"}, method="POST",
         )
         try:
             with urlopen(request, timeout=30) as response:
