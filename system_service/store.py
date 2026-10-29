@@ -33,6 +33,33 @@ class SystemStore(CandidateStore):
                 db.execute("INSERT INTO system_identity VALUES (?)",(identity,))
         os.chmod(self.path,0o600)
 
+    def index_documents(self, text, description):
+        # Keep visual evidence separate from a potentially long source. Overlapping windows
+        # preserve boundary phrases; neither source tails nor OCR are discarded by a prefix cap.
+        sections = [text, description.get('caption', ''), description.get('ocr', '')] + description.get('facts', [])
+        chunks, seen = [], set()
+        step = self.chunk_chars - 64
+        for section in sections:
+            for start in range(0, len(section), step):
+                chunk = section[start:start+self.chunk_chars]
+                if chunk.strip() and chunk not in seen:
+                    chunks.append(chunk); seen.add(chunk)
+        return '\n'.join(sections), chunks
+
+    def rebuild_development_features(self):
+        # Explicit, offline maintenance. Raw sources, request hashes and model budgets survive.
+        with self.lifecycle.write():
+            with self.connect() as db:
+                rows = db.execute('SELECT m.user_id,m.id,m.content FROM memories m JOIN candidate_features f ON m.id=f.id AND m.user_id=f.user_id ORDER BY m.user_id,m.id').fetchall()
+            if any(not user.startswith('dev:') for user, _, _ in rows):
+                raise ValueError('reindex maintenance accepts self-authored dev: scopes only')
+            prepared = [self.feature_row(user, identity, json.loads(content)) for user, identity, content in rows]
+            with self.connect() as db:
+                db.executemany('INSERT OR REPLACE INTO candidate_features VALUES (?,?,?,?,?,?)', prepared)
+            with self.matrix_lock:
+                self.matrices.clear(); self.matrix_bytes = 0
+            return len(prepared)
+
     def _touch(self,user,create=False):
         with self.connect() as db:
             if create:
@@ -139,6 +166,12 @@ class SystemStore(CandidateStore):
             if identifiers:
                 fused[identity]+=.1*len(identifiers & docs[identity]['terms'].keys())/len(identifiers)
             if identity in matches:fused[identity]+=.5
+
+    def merge_expansion(self, fused, expanded):
+        # Links can rescue missing evidence without adding a second full score to an
+        # already weak candidate. Additive expansion promoted unrelated generic entities.
+        for identity, score in expanded.items():
+            fused[identity] = max(fused[identity], score)
 
     def status(self):
         with self.connect() as db:

@@ -102,6 +102,20 @@ class Tests(unittest.TestCase):
         docs={'pixel-source':{'terms':{'4827':1}},'other':{'terms':{}}}
         self.store.refine_scores(scores,{'pixel-source':.1,'other':.8},{},docs,{'4827'},['pixel-source'])
         self.assertGreater(scores['pixel-source'],scores['other'])
+    def test_long_source_tail_and_visual_metadata_are_retrievable(self):
+        source='Unrelated routine archive notes. '*650+' TailRef 61924'
+        self.store.add(self.payload([{'type':'text','text':source},image((220,0,0))]))
+        for query in ('TailRef 61924','SYNTHETIC-X'):
+            result=self.store.search({'user_id':'dev:alice','query':query,'top_k':1})['data']
+            self.assertEqual(len(result),1)
+        with self.store.connect() as db:
+            terms=json.loads(db.execute('SELECT terms FROM candidate_features').fetchone()[0])
+        self.assertIn('61924',terms);self.assertIn('synthetic',terms)
+    def test_entity_links_cannot_additively_overtake_their_source(self):
+        scores={'source':.2,'weak-linked':.12}
+        self.store.merge_expansion(scores,{'weak-linked':.15})
+        self.assertLess(scores['weak-linked'],scores['source'])
+        self.assertEqual(scores['weak-linked'],.15)
     def test_independent_users_index_concurrently(self):
         barrier=threading.Barrier(2)
         def describe(*args):barrier.wait(timeout=3);return {}
@@ -181,7 +195,7 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.call('/add',payload,auth=False)[0],401)
         payload['user_id']='eval:official:sample'
         self.assertEqual(self.call('/add',payload)[0],403)
-        self.assertEqual(self.call('/health',auth=False)[1]['version'],'0.3.0-system')
+        self.assertEqual(self.call('/health',auth=False)[1]['version'],'0.3.1-system')
     def test_dependency_failure_is_retryable_and_sanitized(self):
         self.server.store.store.provider.fail=True
         code,body=self.call('/add',{'user_id':'dev:alice','request_id':'r1','session_id':'s1','messages':[{'role':'user','content':[image((250,0,0))]}]})

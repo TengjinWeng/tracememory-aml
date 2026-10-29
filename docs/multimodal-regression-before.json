@@ -1,0 +1,181 @@
+{
+  "created_at": "2026-10-29T12:35:07.013574+00:00",
+  "label": "before",
+  "service_version": "0.3.0-system",
+  "vision_model": "gpt-5.6-sol",
+  "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
+  "records": 54,
+  "image_records": 5,
+  "case_count": 10,
+  "source_recall_at_1": 0.2222222222222222,
+  "all_required_sources_at_5": 1,
+  "cli_attempts_during_run": 6,
+  "cli_attempts_total": 10,
+  "elapsed_seconds": 66.67,
+  "cases": [
+    {
+      "case": "identifier_in_long_image_record",
+      "required_source_ranks": {
+        "receipt-a": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 443.01,
+      "top_source_labels": [
+        "receipt-a",
+        "bridge",
+        "shapes-left",
+        "shapes-right",
+        "receipt-b"
+      ]
+    },
+    {
+      "case": "near_duplicate_identifier",
+      "required_source_ranks": {
+        "receipt-b": 3
+      },
+      "all_sources_at_1": false,
+      "all_sources_at_5": true,
+      "latency_ms": 429.26,
+      "top_source_labels": [
+        "shapes-left",
+        "shapes-right",
+        "receipt-b",
+        "receipt-c",
+        "bridge"
+      ]
+    },
+    {
+      "case": "visual_spatial_left",
+      "required_source_ranks": {
+        "shapes-left": 4
+      },
+      "all_sources_at_1": false,
+      "all_sources_at_5": true,
+      "latency_ms": 443.08,
+      "top_source_labels": [
+        "receipt-b",
+        "receipt-a",
+        "shapes-right",
+        "shapes-left",
+        "bridge"
+      ]
+    },
+    {
+      "case": "visual_spatial_right",
+      "required_source_ranks": {
+        "shapes-right": 3
+      },
+      "all_sources_at_1": false,
+      "all_sources_at_5": true,
+      "latency_ms": 443.7,
+      "top_source_labels": [
+        "receipt-b",
+        "receipt-a",
+        "shapes-right",
+        "shapes-left",
+        "bridge"
+      ]
+    },
+    {
+      "case": "cross_language_ocr",
+      "required_source_ranks": {
+        "receipt-b": 3
+      },
+      "all_sources_at_1": false,
+      "all_sources_at_5": true,
+      "latency_ms": 451.67,
+      "top_source_labels": [
+        "shapes-left",
+        "shapes-right",
+        "receipt-b",
+        "bridge",
+        "receipt-c"
+      ]
+    },
+    {
+      "case": "unseen_image_pixels",
+      "required_source_ranks": {
+        "receipt-b": 4
+      },
+      "all_sources_at_1": false,
+      "all_sources_at_5": true,
+      "latency_ms": 6596.62,
+      "top_source_labels": [
+        "shapes-right",
+        "receipt-a",
+        "shapes-left",
+        "receipt-b",
+        "receipt-c"
+      ]
+    },
+    {
+      "case": "latest_state",
+      "required_source_ranks": {
+        "new-location": 3
+      },
+      "all_sources_at_1": false,
+      "all_sources_at_5": true,
+      "latency_ms": 432.28,
+      "top_source_labels": [
+        "receipt-a",
+        "receipt-c",
+        "new-location",
+        "old-location",
+        "shapes-left"
+      ]
+    },
+    {
+      "case": "two_hop_source_evidence",
+      "required_source_ranks": {
+        "receipt-a": 1,
+        "bridge": 2
+      },
+      "all_sources_at_1": false,
+      "all_sources_at_5": true,
+      "latency_ms": 445.74,
+      "top_source_labels": [
+        "receipt-a",
+        "bridge",
+        "noise-32",
+        "noise-31",
+        "noise-33"
+      ]
+    },
+    {
+      "case": "long_record_tail",
+      "required_source_ranks": {
+        "receipt-a": 5
+      },
+      "all_sources_at_1": false,
+      "all_sources_at_5": true,
+      "latency_ms": 447.35,
+      "top_source_labels": [
+        "receipt-c",
+        "shapes-left",
+        "shapes-right",
+        "bridge",
+        "receipt-a"
+      ]
+    },
+    {
+      "case": "chinese_source",
+      "required_source_ranks": {
+        "chinese": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 435.53,
+      "top_source_labels": [
+        "chinese",
+        "receipt-b",
+        "receipt-c",
+        "bridge",
+        "receipt-a"
+      ]
+    }
+  ],
+  "cross_user_isolation": "passed",
+  "official_evaluation_started": false,
+  "limitations": "Small self-authored diagnostic corpus, reused for A/B debugging; not held-out, not an official score. Follow-up runs reuse scoped extraction/vector caches."
+}

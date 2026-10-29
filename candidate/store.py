@@ -51,22 +51,27 @@ class CandidateStore(MemoryStore):
                               (payload["user_id"], payload["request_id"])).fetchall()
         prepared = []
         for identity, encoded in rows:
-            content = json.loads(encoded)
-            text, _, _ = validate_content(content)
-            try:
-                pixels = pixel_fingerprints(content)
-            except Exception as error:
-                raise ContractError("candidate could not decode image", 422) from error
-            description = self.provider.describe(payload["user_id"], content) if self.provider else {}
-            derived = "\n".join([text, description.get("caption", ""), description.get("ocr", "")] + description.get("facts", []))[:16000]
-            names = set(entities(derived)) | {x.casefold() for x in description.get("entities", []) if x.strip()}
-            width = self.chunk_chars
-            chunks = [derived[i:i + width] for i in range(0, len(derived), width) if derived[i:i + width].strip()]
-            vectors = self.provider.embed(payload["user_id"], chunks) if self.provider and chunks else []
-            prepared.append((identity, payload["user_id"], canonical(tokenize(derived)), canonical(sorted(names)), canonical(pixels), canonical(vectors)))
+            prepared.append(self.feature_row(payload['user_id'], identity, json.loads(encoded)))
         with self.connect() as db:
             db.executemany("INSERT INTO candidate_features VALUES (?,?,?,?,?,?)", prepared)
         return result
+
+    def index_documents(self, text, description):
+        derived = "\n".join([text, description.get('caption', ''), description.get('ocr', '')] + description.get('facts', []))[:16000]
+        chunks = [derived[i:i+self.chunk_chars] for i in range(0, len(derived), self.chunk_chars) if derived[i:i+self.chunk_chars].strip()]
+        return derived, chunks
+
+    def feature_row(self, user, identity, content):
+        text, _, _ = validate_content(content)
+        try:
+            pixels = pixel_fingerprints(content)
+        except Exception as error:
+            raise ContractError('candidate could not decode image', 422) from error
+        description = self.provider.describe(user, content) if self.provider else {}
+        derived, chunks = self.index_documents(text, description)
+        names = set(entities(derived)) | {x.casefold() for x in description.get('entities', []) if x.strip()}
+        vectors = self.provider.embed(user, chunks) if self.provider and chunks else []
+        return (identity, user, canonical(tokenize(derived)), canonical(sorted(names)), canonical(pixels), canonical(vectors))
 
     def search(self, payload):
         user = required_string(payload.get("user_id"), "user_id")
@@ -121,8 +126,7 @@ class CandidateStore(MemoryStore):
             for identity, doc in docs.items():
                 if identity not in seeds and rare & doc["entities"]:
                     expanded[identity] = max(expanded[identity], fused[seed] * .75)
-        for identity, score in expanded.items():
-            fused[identity] += score
+        self.merge_expansion(fused, expanded)
         if re.search(r"\b(now|currently|latest|current)\b|现在|目前|最新", text, re.I):
             dated = {}
             for identity in fused:
@@ -172,3 +176,7 @@ class CandidateStore(MemoryStore):
 
     def refine_scores(self, fused, dense, lexical, docs, query, matches):
         """Optional integrated-service calibration; offline candidate keeps its original RRF."""
+
+    def merge_expansion(self, fused, expanded):
+        for identity, score in expanded.items():
+            fused[identity] += score

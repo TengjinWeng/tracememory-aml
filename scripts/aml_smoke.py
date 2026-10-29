@@ -54,7 +54,9 @@ def smoke_payload(version_id, contract=None):
             "run_label": "TraceMemory-Multimodal-Smoke-" + str(version_id)}
 
 
-def run(start=False, version_id=None):
+def run(start=False, version_id=None, endpoint_prefix=''):
+    if endpoint_prefix and not re.fullmatch(r'/v[A-Za-z0-9._-]{1,120}', endpoint_prefix):
+        raise SystemExit('invalid version endpoint prefix')
     key_file = ROOT / "secrets/aml-key.txt"
     key = key_file.read_text().strip() if key_file.exists() else ""
     if not key or "PASTE_" in key:
@@ -94,7 +96,7 @@ def run(start=False, version_id=None):
     identifier = str(version["id"])
     bound = client.api("/access/version-endpoints").get("versions", [])
     endpoints = [v for v in bound if str(v.get("id")) == identifier]
-    base = info["public_base_url"].rstrip("/")
+    base = info["public_base_url"].rstrip("/")+endpoint_prefix
     if len(endpoints) != 1 or endpoints[0].get("add_endpoint") != base + "/add" or endpoints[0].get("search_endpoint") != base + "/search":
         raise SystemExit("Bound API endpoints differ from the verified deployment")
     if any(str(j.get("version_id")) == identifier and j.get("benchmark_type") == "multimodal" and j.get("phase") in ("smoke", "full")
@@ -112,7 +114,8 @@ def run(start=False, version_id=None):
     if admission.get("bound") is not True or admission.get("smoke_allowed") is not True:
         raise SystemExit("Current version has no confirmed Smoke admission; check contract/quota/binding")
     with urlopen(base + "/health", timeout=20) as response:
-        if json.load(response).get("status") != "ok":
+        health = json.load(response)
+        if health.get("status") != "ok" or health.get('version') != version.get('version_name'):
             raise SystemExit("Deployment is not healthy")
     receipt = {"state": "sending", "created_at": datetime.now(timezone.utc).isoformat(),
                "version_id": identifier, "contract": contract, "payload": smoke_payload(identifier,contract)}
@@ -132,9 +135,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--start", action="store_true", help="start one admitted, deduplicated Multimodal Smoke")
     parser.add_argument("--version-id")
+    parser.add_argument('--endpoint-prefix', default='')
     args = parser.parse_args()
     try:
-        run(args.start, args.version_id)
+        run(args.start, args.version_id, args.endpoint_prefix)
     except HTTPError as error:
         raise SystemExit("Official API returned HTTP %s; response not printed to protect credentials" % error.code)
     except (URLError, TimeoutError, ValueError, KeyError):
