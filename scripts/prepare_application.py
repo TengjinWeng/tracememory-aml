@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 
@@ -68,10 +69,15 @@ def main():
         request = Request(
             "https://agentmemoryleaderboard.ai/evaluation-access-requests/check-email",
             data=json.dumps({"contact_email": info["contact_email"]}).encode(),
-            headers={"Content-Type": "application/json"}, method="POST",
+            headers={"Content-Type": "application/json",
+                     "Origin": "https://agentmemoryleaderboard.ai",
+                     "Referer": "https://agentmemoryleaderboard.ai/evaluation"}, method="POST",
         )
-        with urlopen(request, timeout=30) as response:
-            value = json.load(response)
+        try:
+            with urlopen(request, timeout=30) as response:
+                value = json.load(response)
+        except HTTPError as error:
+            raise SystemExit("Official email precheck failed: HTTP %s; registration was not submitted" % error.code)
         available = value.get("available")
         if type(available) is not bool:
             raise SystemExit("Email-check response did not establish availability")
