@@ -34,6 +34,17 @@ def main():
     key = result.stdout.strip()
     if len(key) < 24 or "\n" in key:
         raise SystemExit("Invalid credential response; no value disclosed")
+    ingress_kind = info.get("ingress_kind", "temporary_quick_tunnel")
+    ingress_note = (
+        "Ingress uses an account-assigned ngrok development hostname, preserved across agent restarts. "
+        "Agent runs on the participant server under a dedicated restart loop; capture/inspection is disabled. "
+        "Free-plan quota is 1 GB outbound and 20,000 HTTP requests/month; account usage and Full-suite "
+        "capacity are not certified. Server/container reboot recovery is manual at this stage. "
+        "This application requests integration access/Smoke review, not a Full run. "
+        if ingress_kind == "ngrok_dev_domain" else
+        "IMPORTANT: current ingress is a temporary Cloudflare Quick Tunnel for integration preparation, "
+        "with no fixed-hostname/reboot guarantee. It must be replaced or accepted explicitly before formal use. "
+    )
     notes = (
         "TraceMemory protocol baseline for Multimodal integration. Public source: "
         + info["project_url"] + "; fixed commit: " + commit + ". "
@@ -47,8 +58,7 @@ def main():
         "10 MiB decoded per image, 30 MiB decoded media per Add/Search response; top_k <= 100. "
         "At most 8 active requests, excess returns 429; initial requested Add/Search concurrency 1/1. "
         "Storage and full-suite capacity not yet certified. Local and deployed synthetic checks passed. "
-        "IMPORTANT: current ingress is a temporary Cloudflare Quick Tunnel for integration preparation, "
-        "with no fixed-hostname/reboot guarantee. It must be replaced or accepted explicitly before formal use. "
+        + ingress_note +
         "No official Smoke or Full has been run; this draft does not claim a score or Full readiness."
     )
     payload = {
