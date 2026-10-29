@@ -1,0 +1,15 @@
+.env
+tools/
+._*
+secrets/
+data/*
+!data/.gitkeep
+__pycache__/
+*.pyc
+*.log
+*.pid
+.DS_Store
+docs/私人报名信息.json
+docs/部署记录.md
+docs/测试结果.txt
+先看这里.txt
