@@ -1,6 +1,8 @@
 .env
 tools/
 .venv-candidate/
+.venv-embedding/
+models-embedding/
 ._*
 secrets/
 data/*

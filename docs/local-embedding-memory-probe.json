@@ -1,0 +1,19 @@
+{
+  "scope": "two known self-authored diagnostics, not an AML score or generalization test",
+  "model": "Qwen/Qwen3-Embedding-0.6B",
+  "vision_enabled": false,
+  "checks": [
+    {
+      "query": "Where was the automobile left?",
+      "expected_source_rank": 1
+    },
+    {
+      "query": "周五几点开会？",
+      "expected_source_rank": 1
+    }
+  ],
+  "cross_user_isolation": "passed",
+  "local_embedding_requests": 6,
+  "paid_model_api_calls": 0,
+  "temporary_database_removed": true
+}

@@ -101,6 +101,7 @@ capacity, rules, and frozen-version requirements are all checked.
 
 Official references:
 
+- https://agentmemoryleaderboard.ai/zh-cn/docs#doc-overview (specified-model rules)
 - https://agentmemoryleaderboard.ai/api-guide
 - https://agentmemoryleaderboard.ai/rules
 - https://agentmemoryleaderboard.ai/evaluation
@@ -112,3 +113,7 @@ copied. Model/API/hosting charges are not included. No private evaluation data
 or secrets belong in the public repository. AML evaluation data and derived
 copies must be removed within 30 days after the task unless AML authorizes longer
 retention. The owner must arrange that deletion before official evaluation.
+
+For an independent local open-weight embedding experiment, see
+`experiments/local_embedding/README.md`. It uses its actual Qwen model ID and is
+not the submitted service or a substitute for the specified-model evaluation.

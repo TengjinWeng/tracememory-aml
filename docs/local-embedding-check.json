@@ -1,0 +1,30 @@
+{
+  "scope": "self-authored development probe; not an official score",
+  "health": {
+    "status": "ok",
+    "model": "Qwen/Qwen3-Embedding-0.6B",
+    "revision": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+    "device": "cpu",
+    "dimensions": 1024,
+    "development_only": true
+  },
+  "cases": 2,
+  "correct_top1": 2,
+  "rankings": [
+    [
+      0,
+      2,
+      1,
+      3
+    ],
+    [
+      3,
+      1,
+      2,
+      0
+    ]
+  ],
+  "elapsed_seconds": 0.632,
+  "invalid_requests_rejected": 3,
+  "paid_model_api_calls": 0
+}
