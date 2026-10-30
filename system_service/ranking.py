@@ -6,6 +6,7 @@ from candidate.store import entities
 from candidate.vision import pixel_fingerprints
 from memory_service import canonical, tokenize, validate_content, ContractError
 from system_service.relations import spatial_agreement, state_adjustments
+from system_service.modality import wants_image_evidence, prefer_image_evidence
 from system_service.store import SystemStore
 
 
@@ -42,6 +43,8 @@ class AlgorithmStore(SystemStore):
         payload=getattr(self.ranking_context,'payload',None)
         if payload is None:return
         text,images,_=validate_content(payload['query'])
+        if wants_image_evidence(text, bool(images)):
+            prefer_image_evidence(fused, dense, docs)
         if images and not matches and self.provider:
             # CandidateStore already extracted this exact user/query; this lookup must hit its scoped cache.
             description=self.provider.describe(payload['user_id'],payload['query'])
@@ -74,5 +77,5 @@ class AlgorithmStore(SystemStore):
         report=super().status()
         with self.connect() as db:
             missing=db.execute('SELECT count(*) FROM candidate_features f LEFT JOIN ordered_evidence_v032 e ON f.id=e.id AND f.user_id=e.user_id WHERE e.id IS NULL').fetchone()[0]
-        report.update(ranking_policy='ordered-spatial-scoped-state-v1',ordered_evidence_missing=missing)
+        report.update(ranking_policy='ordered-spatial-scoped-state-modality-v2',ordered_evidence_missing=missing)
         return report

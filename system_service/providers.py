@@ -86,7 +86,7 @@ class ScopedCache:
 
 
 class DevelopmentModels:
-    """For self-authored development data only; never labelled as specified models."""
+    """For independent dev data only; never labelled as specified models."""
     mode = "development-cli-local"
 
     def __init__(self, directory, cli_limit=20, cli_model="gpt-5.6-sol", runner=None):

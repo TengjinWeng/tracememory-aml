@@ -165,14 +165,21 @@ def main():
                 raise SystemExit('A frozen source commit is required before held-out scoring')
             if not (ROOT / 'docs/real-corpus-v1-dev-after.json').exists():
                 raise SystemExit('Finish development validation before accessing held-out scores')
-            actual = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
-            if actual != args.frozen_commit:
+            receipt = ROOT / 'docs/real-corpus-v1-source-freeze.json'
+            frozen = json.loads(receipt.read_text())
+            if frozen['commit'] != args.frozen_commit:
                 raise SystemExit('Frozen source commit mismatch')
+            for name, expected in frozen['source_sha256'].items():
+                path = ROOT / name
+                if path.resolve().is_relative_to(ROOT.resolve()) and digest(path) == expected:
+                    continue
+                raise SystemExit('Runtime source differs from the frozen commit: ' + name)
             # Lock held-out access before the first query, so an interrupted run
             # cannot silently become another chance at tuning the same sample.
             lock = DATA / 'holdout.started.json'
             with lock.open('x') as stream:
-                json.dump({'commit': actual, 'manifest_sha256': digest(MANIFEST)}, stream)
+                json.dump({'commit': args.frozen_commit, 'manifest_sha256': digest(MANIFEST),
+                           'source_receipt_sha256': digest(receipt)}, stream)
         rows = []
         for case in manifest['cases']:
             if case['split'] != split:

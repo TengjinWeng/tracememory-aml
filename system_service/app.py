@@ -14,7 +14,7 @@ from system_service.ranking import AlgorithmStore
 from system_service.legacy_retention import purge_due
 
 ROOT=Path(__file__).resolve().parents[1]
-VERSION='0.3.2-system'
+VERSION='0.3.3-system'
 
 
 def load_settings(root=ROOT):

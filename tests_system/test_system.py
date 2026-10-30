@@ -195,7 +195,7 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.call('/add',payload,auth=False)[0],401)
         payload['user_id']='eval:official:sample'
         self.assertEqual(self.call('/add',payload)[0],403)
-        self.assertEqual(self.call('/health',auth=False)[1]['version'],'0.3.2-system')
+        self.assertEqual(self.call('/health',auth=False)[1]['version'],'0.3.3-system')
     def test_dependency_failure_is_retryable_and_sanitized(self):
         self.server.store.store.provider.fail=True
         code,body=self.call('/add',{'user_id':'dev:alice','request_id':'r1','session_id':'s1','messages':[{'role':'user','content':[image((250,0,0))]}]})

@@ -1,0 +1,216 @@
+{
+  "ingestion_timings": [
+    {
+      "object_id": 13404,
+      "modality": "image-only",
+      "seconds": 10.715
+    },
+    {
+      "object_id": 13405,
+      "modality": "catalogue-text",
+      "seconds": 0.446
+    },
+    {
+      "object_id": 14358,
+      "modality": "catalogue-text",
+      "seconds": 0.438
+    },
+    {
+      "object_id": 14359,
+      "modality": "catalogue-text",
+      "seconds": 0.109
+    },
+    {
+      "object_id": 17230,
+      "modality": "catalogue-text",
+      "seconds": 0.469
+    },
+    {
+      "object_id": 500905,
+      "modality": "image-only",
+      "seconds": 7.087
+    },
+    {
+      "object_id": 501575,
+      "modality": "catalogue-text",
+      "seconds": 0.519
+    },
+    {
+      "object_id": 501587,
+      "modality": "catalogue-text",
+      "seconds": 0.466
+    },
+    {
+      "object_id": 501878,
+      "modality": "catalogue-text",
+      "seconds": 0.447
+    },
+    {
+      "object_id": 501965,
+      "modality": "catalogue-text",
+      "seconds": 0.376
+    },
+    {
+      "object_id": 191965,
+      "modality": "image-only",
+      "seconds": 9.758
+    },
+    {
+      "object_id": 197494,
+      "modality": "catalogue-text",
+      "seconds": 0.45
+    },
+    {
+      "object_id": 197495,
+      "modality": "catalogue-text",
+      "seconds": 0.116
+    },
+    {
+      "object_id": 197496,
+      "modality": "catalogue-text",
+      "seconds": 0.126
+    },
+    {
+      "object_id": 199446,
+      "modality": "catalogue-text",
+      "seconds": 0.443
+    },
+    {
+      "object_id": 21975,
+      "modality": "image-only",
+      "seconds": 10.323
+    },
+    {
+      "object_id": 22157,
+      "modality": "catalogue-text",
+      "seconds": 0.439
+    },
+    {
+      "object_id": 22214,
+      "modality": "catalogue-text",
+      "seconds": 0.441
+    },
+    {
+      "object_id": 23026,
+      "modality": "catalogue-text",
+      "seconds": 0.437
+    },
+    {
+      "object_id": 24003,
+      "modality": "catalogue-text",
+      "seconds": 0.453
+    },
+    {
+      "object_id": 14430,
+      "modality": "image-only",
+      "seconds": 9.011
+    },
+    {
+      "object_id": 14984,
+      "modality": "catalogue-text",
+      "seconds": 0.455
+    },
+    {
+      "object_id": 1648,
+      "modality": "catalogue-text",
+      "seconds": 0.424
+    },
+    {
+      "object_id": 1658,
+      "modality": "catalogue-text",
+      "seconds": 0.43
+    },
+    {
+      "object_id": 1659,
+      "modality": "catalogue-text",
+      "seconds": 0.425
+    },
+    {
+      "object_id": 195357,
+      "modality": "image-only",
+      "seconds": 9.572
+    },
+    {
+      "object_id": 197234,
+      "modality": "catalogue-text",
+      "seconds": 0.456
+    },
+    {
+      "object_id": 205197,
+      "modality": "catalogue-text",
+      "seconds": 0.439
+    },
+    {
+      "object_id": 43084,
+      "modality": "catalogue-text",
+      "seconds": 0.433
+    },
+    {
+      "object_id": 451896,
+      "modality": "catalogue-text",
+      "seconds": 0.444
+    },
+    {
+      "object_id": 208685,
+      "modality": "catalogue-text",
+      "seconds": 0.436
+    },
+    {
+      "object_id": 500553,
+      "modality": "catalogue-text",
+      "seconds": 0.378
+    },
+    {
+      "object_id": 500863,
+      "modality": "catalogue-text",
+      "seconds": 0.467
+    },
+    {
+      "object_id": 501251,
+      "modality": "catalogue-text",
+      "seconds": 0.457
+    },
+    {
+      "object_id": 501321,
+      "modality": "catalogue-text",
+      "seconds": 0.474
+    },
+    {
+      "object_id": 501191,
+      "modality": "catalogue-text",
+      "seconds": 0.403
+    },
+    {
+      "object_id": 449449,
+      "modality": "catalogue-text",
+      "seconds": 0.432
+    },
+    {
+      "object_id": 500789,
+      "modality": "catalogue-text",
+      "seconds": 0.448
+    },
+    {
+      "object_id": 500793,
+      "modality": "catalogue-text",
+      "seconds": 0.459
+    },
+    {
+      "object_id": 501143,
+      "modality": "catalogue-text",
+      "seconds": 0.47
+    }
+  ],
+  "created_at": "2026-10-30T02:42:12.591954+00:00",
+  "phase": "ingest",
+  "service_version": "0.3.2-system",
+  "manifest_sha256": "eb7eeaaf6de2db1a904c4a00aa2e8c4a7f2ab40d12c697b15defd60f7e56189a",
+  "frozen_commit": null,
+  "vision_model": "gpt-5.6-sol",
+  "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
+  "cli_attempts_during_run": 6,
+  "cli_attempts_total": 19,
+  "elapsed_seconds": 70.58,
+  "official_score": false,
+  "limitations": "Small museum-object sample, not a daily-life/document/OCR benchmark or an official AML score. Multiple queries per image are correlated."
+}

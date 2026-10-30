@@ -1,0 +1,135 @@
+{
+  "cases": [
+    {
+      "case": "13404-0",
+      "kind": "text-to-image",
+      "language": "en",
+      "required_group_ranks": [
+        1
+      ],
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 168.5,
+      "top_objects": [
+        13404,
+        13405,
+        14359,
+        14358,
+        17230
+      ],
+      "top_result_has_image": true
+    },
+    {
+      "case": "13404-1",
+      "kind": "text-to-image",
+      "language": "en",
+      "required_group_ranks": [
+        1
+      ],
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 146.73,
+      "top_objects": [
+        13404,
+        21975,
+        195357,
+        191965,
+        14430
+      ],
+      "top_result_has_image": true
+    },
+    {
+      "case": "13404-2",
+      "kind": "text-to-image",
+      "language": "zh",
+      "required_group_ranks": [
+        1
+      ],
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 145.37,
+      "top_objects": [
+        13404,
+        14430,
+        191965,
+        500905,
+        21975
+      ],
+      "top_result_has_image": true
+    },
+    {
+      "case": "191965-0",
+      "kind": "text-to-image",
+      "language": "en",
+      "required_group_ranks": [
+        1
+      ],
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 144.74,
+      "top_objects": [
+        191965,
+        197496,
+        197495,
+        199446,
+        197494
+      ],
+      "top_result_has_image": true
+    },
+    {
+      "case": "191965-1",
+      "kind": "text-to-image",
+      "language": "en",
+      "required_group_ranks": [
+        1
+      ],
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 145.23,
+      "top_objects": [
+        191965,
+        195357,
+        13404,
+        500905,
+        14430
+      ],
+      "top_result_has_image": true
+    },
+    {
+      "case": "191965-2",
+      "kind": "text-to-image",
+      "language": "zh",
+      "required_group_ranks": [
+        1
+      ],
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 153.0,
+      "top_objects": [
+        191965,
+        195357,
+        13404,
+        14430,
+        197496
+      ],
+      "top_result_has_image": true
+    }
+  ],
+  "single_source_queries": 6,
+  "single_source_recall_at_1": 1,
+  "all_required_sources_at_5": 1,
+  "single_source_mrr": 1.0,
+  "cross_user_isolation": "passed",
+  "created_at": "2026-10-30T02:45:01.299356+00:00",
+  "phase": "dev-after",
+  "service_version": "0.3.3-system",
+  "manifest_sha256": "eb7eeaaf6de2db1a904c4a00aa2e8c4a7f2ab40d12c697b15defd60f7e56189a",
+  "frozen_commit": null,
+  "vision_model": "gpt-5.6-sol",
+  "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
+  "cli_attempts_during_run": 0,
+  "cli_attempts_total": 19,
+  "elapsed_seconds": 0.94,
+  "official_score": false,
+  "limitations": "Small museum-object sample, not a daily-life/document/OCR benchmark or an official AML score. Multiple queries per image are correlated."
+}
