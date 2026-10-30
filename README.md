@@ -2,10 +2,10 @@
 
 Multimodal memory system for the AML challenge. Maintainer: wengtengjin.
 
-Status: academic access approved for the retained 0.1.0-protocol version;
-its official Multimodal Smoke passed. **No Full result yet.**
+Status: the separately registered model-free 0.3.1-protocol version passed
+official Multimodal Smoke. **No Full result yet.**
 
-## Integrated system (0.3.2-system)
+## Integrated system (0.3.3-system)
 
 The current development system connects durable Add/Search storage, real image
 description/OCR through Codex CLI (`gpt-5.6-sol`), local Qwen3 text embeddings,
@@ -21,12 +21,12 @@ bash scripts/install_system.sh
 
 See [complete system delivery](docs/完整系统交付.md) and
 [rules and implementation boundaries](docs/规则核对与系统边界.md).
-Development uses only self-authored `dev:` scopes; it does not silently claim
+Development uses only independent test data in `dev:` scopes; it does not silently claim
 academic model compliance. The specified-model mode uses its own database and
 requires the actual specified model APIs. Official version binding, Smoke,
 capacity and cost approval remain separate gates.
 
-This round passes 31 integrated/routing/transport checks and the real-model
+This round passes 36 integrated/routing/transport checks and the real-model
 self-authored image/text integration flow. Previous baseline/candidate checks
 remain documented in their own reports.
 The small known fixtures and warm-cache reruns are not official scores or a
@@ -48,6 +48,18 @@ state updates only within matching entities and attributes. See
 [development changes and diagnostic limits](docs/多模态优化032.md).
 The previous email monitor was deleted at the user's request; development does
 not depend on further mailbox polling.
+
+Version 0.3.3 also uses a frozen CC0 museum-object corpus: six real photographs
+and 34 human catalogue text distractors. Two image objects support development;
+four other objects are reserved for one-time held-out scoring. Single-source
+top-1 is 12/13 and all required sources appear in the top five on 14/15 queries.
+The remaining helmet retrieval failures are retained. This is a small sample,
+not an official score or a broad generalization claim. See
+[protocol, results and limitations](docs/真实图文验证033.md).
+The persistent development CLI cap is now 20/20; it was not raised. New image
+calls are blocked, while cached images and text retrieval remain available.
+The user elected to retain the development profile for now; specified-model
+access and formal algorithm submission are pending.
 
 ## Retained protocol baseline: run
 

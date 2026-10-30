@@ -1,0 +1,198 @@
+{
+  "created_at": "2026-10-30T02:50:55.612784+00:00",
+  "version": "0.3.3-system",
+  "reports": [
+    {
+      "corpus": "multimodal-regression-v1",
+      "cases": [
+        {
+          "case": "identifier_in_long_image_record",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "near_duplicate_identifier",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "visual_spatial_left",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "visual_spatial_right",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "cross_language_ocr",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "unseen_image_pixels",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "latest_state",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "two_hop_source_evidence",
+          "ranks": [
+            2,
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "long_record_tail",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "chinese_source",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        }
+      ],
+      "single_source_recall_at_1": 1,
+      "all_required_sources_at_5": 1
+    },
+    {
+      "corpus": "state-diagnostic-v2",
+      "cases": [
+        {
+          "case": "above",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "below",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "inverse_relation",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "inverse_relation_other",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "different_image_query",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "current_home",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "historical_home",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "current_job",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "historical_job",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "current_preference",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "historical_preference",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "current_meeting",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "historical_meeting",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "chinese_update",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        },
+        {
+          "case": "newer_unrelated_person",
+          "ranks": [
+            1
+          ],
+          "all_at_5": true
+        }
+      ],
+      "single_source_recall_at_1": 1,
+      "all_required_sources_at_5": 1
+    }
+  ],
+  "cli_attempts": 0,
+  "meaning": "Known self-authored regressions only; no independent or official score claim."
+}
