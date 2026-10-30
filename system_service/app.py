@@ -10,11 +10,11 @@ from candidate.config import read_config
 from candidate.providers import SpecifiedModels, ProviderError
 from memory_service import ContractError, MemoryHandler, MemoryServer
 from system_service.providers import DevelopmentModels, EMBEDDING_MODEL, EMBEDDING_REVISION
-from system_service.store import SystemStore
+from system_service.ranking import AlgorithmStore
 from system_service.legacy_retention import purge_due
 
 ROOT=Path(__file__).resolve().parents[1]
-VERSION='0.3.1-system'
+VERSION='0.3.2-system'
 
 
 def load_settings(root=ROOT):
@@ -119,7 +119,7 @@ def make_server(root=ROOT,port=None,provider_override=None):
             raise ValueError('specified model keys/URLs missing')
         provider=SpecifiedModels(models,directory/'provider-cache.sqlite3')
     identity=getattr(provider,'identity',None) or 'specified:gpt-4o-mini:text-embedding-v4:'+str(provider.config.get('EMBEDDING_DIMENSIONS','1024'))
-    store=SystemStore(directory/'memory.sqlite3',provider=provider,identity=identity)
+    store=AlgorithmStore(directory/'memory.sqlite3',provider=provider,identity=identity)
     server=MemoryServer(('127.0.0.1',int(config.get('SYSTEM_PORT','18089')) if port is None else port),None,config['SYSTEM_API_KEY'])
     server.RequestHandlerClass=Handler
     server.mode=mode

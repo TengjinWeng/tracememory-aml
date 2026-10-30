@@ -1,0 +1,213 @@
+{
+  "created_at": "2026-10-30T02:19:04.011664+00:00",
+  "label": "after",
+  "service_version": "0.3.2-system",
+  "records": 51,
+  "image_records": 2,
+  "case_count": 15,
+  "source_recall_at_1": 1,
+  "all_required_sources_at_5": 1,
+  "cases": [
+    {
+      "case": "above",
+      "required_source_ranks": {
+        "square-above": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "square-above",
+        "square-below",
+        "noise-5"
+      ]
+    },
+    {
+      "case": "below",
+      "required_source_ranks": {
+        "square-below": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "square-below",
+        "square-above",
+        "noise-3"
+      ]
+    },
+    {
+      "case": "inverse_relation",
+      "required_source_ranks": {
+        "square-above": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "square-above",
+        "square-below",
+        "noise-3"
+      ]
+    },
+    {
+      "case": "inverse_relation_other",
+      "required_source_ranks": {
+        "square-below": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "square-below",
+        "square-above",
+        "noise-3"
+      ]
+    },
+    {
+      "case": "different_image_query",
+      "required_source_ranks": {
+        "square-above": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "square-above",
+        "square-below",
+        "noise-5"
+      ]
+    },
+    {
+      "case": "current_home",
+      "required_source_ranks": {
+        "home-new": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "home-new",
+        "job-new",
+        "home-old"
+      ]
+    },
+    {
+      "case": "historical_home",
+      "required_source_ranks": {
+        "home-old": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "home-old",
+        "home-new",
+        "job-new"
+      ]
+    },
+    {
+      "case": "current_job",
+      "required_source_ranks": {
+        "job-new": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "job-new",
+        "home-new",
+        "home-old"
+      ]
+    },
+    {
+      "case": "historical_job",
+      "required_source_ranks": {
+        "job-old": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "job-old",
+        "job-new",
+        "home-old"
+      ]
+    },
+    {
+      "case": "current_preference",
+      "required_source_ranks": {
+        "drink-new": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "drink-new",
+        "other-person",
+        "drink-old"
+      ]
+    },
+    {
+      "case": "historical_preference",
+      "required_source_ranks": {
+        "drink-old": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "drink-old",
+        "drink-new",
+        "other-person"
+      ]
+    },
+    {
+      "case": "current_meeting",
+      "required_source_ranks": {
+        "meeting-new": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "meeting-new",
+        "meeting-old",
+        "home-distractor"
+      ]
+    },
+    {
+      "case": "historical_meeting",
+      "required_source_ranks": {
+        "meeting-old": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "meeting-old",
+        "meeting-new",
+        "square-below"
+      ]
+    },
+    {
+      "case": "chinese_update",
+      "required_source_ranks": {
+        "chinese-new": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "chinese-new",
+        "chinese-distractor",
+        "chinese-old"
+      ]
+    },
+    {
+      "case": "newer_unrelated_person",
+      "required_source_ranks": {
+        "other-person": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "top_source_labels": [
+        "other-person",
+        "drink-new",
+        "drink-distractor"
+      ]
+    }
+  ],
+  "cli_attempts_during_run": 0,
+  "cli_attempts_total": 13,
+  "elapsed_seconds": 3.97,
+  "cross_user_isolation": "passed",
+  "official_evaluation_started": false,
+  "limitations": "Self-authored diagnostic, defined before this round of ranking changes, reused for debugging. Not an independent statistical benchmark or an official score. Warm caches differ from cold runs."
+}

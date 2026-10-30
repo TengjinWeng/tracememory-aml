@@ -1,0 +1,181 @@
+{
+  "created_at": "2026-10-30T02:19:08.319533+00:00",
+  "label": "verification",
+  "service_version": "0.3.2-system",
+  "vision_model": "gpt-5.6-sol",
+  "embedding_model": "Qwen/Qwen3-Embedding-0.6B",
+  "records": 54,
+  "image_records": 5,
+  "case_count": 10,
+  "source_recall_at_1": 1,
+  "all_required_sources_at_5": 1,
+  "cli_attempts_during_run": 0,
+  "cli_attempts_total": 13,
+  "elapsed_seconds": 4.04,
+  "cases": [
+    {
+      "case": "identifier_in_long_image_record",
+      "required_source_ranks": {
+        "receipt-a": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 159.44,
+      "top_source_labels": [
+        "receipt-a",
+        "bridge",
+        "receipt-b",
+        "receipt-c",
+        "noise-27"
+      ]
+    },
+    {
+      "case": "near_duplicate_identifier",
+      "required_source_ranks": {
+        "receipt-b": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 148.48,
+      "top_source_labels": [
+        "receipt-b",
+        "receipt-a",
+        "receipt-c",
+        "bridge",
+        "noise-7"
+      ]
+    },
+    {
+      "case": "visual_spatial_left",
+      "required_source_ranks": {
+        "shapes-left": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 154.17,
+      "top_source_labels": [
+        "shapes-left",
+        "shapes-right",
+        "receipt-c",
+        "receipt-a",
+        "bridge"
+      ]
+    },
+    {
+      "case": "visual_spatial_right",
+      "required_source_ranks": {
+        "shapes-right": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 149.43,
+      "top_source_labels": [
+        "shapes-right",
+        "shapes-left",
+        "bridge",
+        "noise-33",
+        "noise-32"
+      ]
+    },
+    {
+      "case": "cross_language_ocr",
+      "required_source_ranks": {
+        "receipt-b": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 153.57,
+      "top_source_labels": [
+        "receipt-b",
+        "receipt-a",
+        "receipt-c",
+        "bridge",
+        "noise-27"
+      ]
+    },
+    {
+      "case": "unseen_image_pixels",
+      "required_source_ranks": {
+        "receipt-b": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 170.49,
+      "top_source_labels": [
+        "receipt-b",
+        "receipt-a",
+        "receipt-c",
+        "bridge",
+        "shapes-right"
+      ]
+    },
+    {
+      "case": "latest_state",
+      "required_source_ranks": {
+        "new-location": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 151.67,
+      "top_source_labels": [
+        "new-location",
+        "receipt-b",
+        "old-location",
+        "bridge",
+        "receipt-a"
+      ]
+    },
+    {
+      "case": "two_hop_source_evidence",
+      "required_source_ranks": {
+        "receipt-a": 2,
+        "bridge": 1
+      },
+      "all_sources_at_1": false,
+      "all_sources_at_5": true,
+      "latency_ms": 151.12,
+      "top_source_labels": [
+        "bridge",
+        "receipt-a",
+        "receipt-c",
+        "receipt-b",
+        "noise-32"
+      ]
+    },
+    {
+      "case": "long_record_tail",
+      "required_source_ranks": {
+        "receipt-a": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 151.96,
+      "top_source_labels": [
+        "receipt-a",
+        "receipt-c",
+        "bridge",
+        "shapes-right",
+        "noise-9"
+      ]
+    },
+    {
+      "case": "chinese_source",
+      "required_source_ranks": {
+        "chinese": 1
+      },
+      "all_sources_at_1": true,
+      "all_sources_at_5": true,
+      "latency_ms": 152.47,
+      "top_source_labels": [
+        "chinese",
+        "receipt-a",
+        "noise-39",
+        "noise-29",
+        "noise-31"
+      ]
+    }
+  ],
+  "cross_user_isolation": "passed",
+  "official_evaluation_started": false,
+  "limitations": "Small self-authored diagnostic corpus, reused for A/B debugging; not held-out, not an official score. Follow-up runs reuse scoped extraction/vector caches."
+}

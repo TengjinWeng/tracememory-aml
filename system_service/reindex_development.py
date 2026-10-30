@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from candidate.config import read_config
 from system_service.providers import DevelopmentModels
-from system_service.store import SystemStore
+from system_service.ranking import AlgorithmStore
 
 
 def main():
@@ -32,7 +32,7 @@ def main():
     provider = DevelopmentModels(directory, cli_limit=int(config.get('MAX_CLI_REQUESTS', '20')),
                                  cli_model=config['CLI_MODEL'])
     before = provider.cache.usage()
-    store = SystemStore(directory/'memory.sqlite3', provider, provider.identity)
+    store = AlgorithmStore(directory/'memory.sqlite3', provider, provider.identity)
     count = store.rebuild_development_features()
     after = provider.cache.usage()
     result = {'reindexed_development_records': count,

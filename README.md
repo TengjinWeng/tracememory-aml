@@ -5,7 +5,7 @@ Multimodal memory system for the AML challenge. Maintainer: wengtengjin.
 Status: academic access approved for the retained 0.1.0-protocol version;
 its official Multimodal Smoke passed. **No Full result yet.**
 
-## Integrated system (0.3.1-system)
+## Integrated system (0.3.2-system)
 
 The current development system connects durable Add/Search storage, real image
 description/OCR through Codex CLI (`gpt-5.6-sol`), local Qwen3 text embeddings,
@@ -26,8 +26,9 @@ academic model compliance. The specified-model mode uses its own database and
 requires the actual specified model APIs. Official version binding, Smoke,
 capacity and cost approval remain separate gates.
 
-Validation: 20 protocol tests, 27 candidate tests and 21 integrated/routing/transport tests
-pass, together with a real-model self-authored image/text integration flow.
+This round passes 31 integrated/routing/transport checks and the real-model
+self-authored image/text integration flow. Previous baseline/candidate checks
+remain documented in their own reports.
 The small known fixtures and warm-cache reruns are not official scores or a
 generalization/performance claim. Reports: `docs/system-model-validation.json`
 and `docs/system-flow-check.json`.
@@ -41,6 +42,12 @@ remains on 18086 with a diagnostic prefix; do not run a new job against its old
 binding. See [profile and live platform constraints](docs/协议版本031提交说明.md),
 [development changes](docs/多模态优化031.md), and
 [specified-model access research](docs/正式模型调用核对.md).
+
+The 0.3.2 development ranker preserves ordered visual relations and compares
+state updates only within matching entities and attributes. See
+[development changes and diagnostic limits](docs/多模态优化032.md).
+The previous email monitor was deleted at the user's request; development does
+not depend on further mailbox polling.
 
 ## Retained protocol baseline: run
 

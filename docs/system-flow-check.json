@@ -1,6 +1,6 @@
 {
   "scope": "self-authored development integration; not an AML score or held-out quality estimate",
-  "version": "0.3.1-system",
+  "version": "0.3.2-system",
   "mode": "development",
   "vision_model": "gpt-5.6-sol",
   "checks": [
