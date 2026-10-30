@@ -1,0 +1,1043 @@
+{
+  "cases": [
+    {
+      "case": "13404-0",
+      "expected_objects": [
+        13404
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the original picture of the metal teapot.",
+      "split": "dev"
+    },
+    {
+      "case": "13404-1",
+      "expected_objects": [
+        13404
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the photo with a curved spout on the right and a loop handle on the left.",
+      "split": "dev"
+    },
+    {
+      "case": "13404-2",
+      "expected_objects": [
+        13404
+      ],
+      "kind": "text-to-image",
+      "language": "zh",
+      "query": "找那张银色、有盖茶壶的照片。",
+      "split": "dev"
+    },
+    {
+      "case": "191965-0",
+      "expected_objects": [
+        191965
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the original photo of the seated ceramic cat.",
+      "split": "dev"
+    },
+    {
+      "case": "191965-1",
+      "expected_objects": [
+        191965
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the animal picture on a round base against a dark grey background.",
+      "split": "dev"
+    },
+    {
+      "case": "191965-2",
+      "expected_objects": [
+        191965
+      ],
+      "kind": "text-to-image",
+      "language": "zh",
+      "query": "哪张照片是黄褐色釉面的猫雕像？",
+      "split": "dev"
+    },
+    {
+      "case": "500905-0",
+      "expected_objects": [
+        500905
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the original photograph of a violin.",
+      "split": "holdout"
+    },
+    {
+      "case": "500905-1",
+      "expected_objects": [
+        500905
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the image of the brown wooden string instrument with two f-shaped sound holes.",
+      "split": "holdout"
+    },
+    {
+      "case": "500905-2",
+      "expected_objects": [
+        500905
+      ],
+      "kind": "text-to-image",
+      "language": "zh",
+      "query": "找出棕色小提琴的原始图片。",
+      "split": "holdout"
+    },
+    {
+      "case": "21975-0",
+      "expected_objects": [
+        21975
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the original photograph of a helmet.",
+      "split": "holdout"
+    },
+    {
+      "case": "21975-1",
+      "expected_objects": [
+        21975
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the photo of a conical metal headpiece with a very tall pointed spike.",
+      "split": "holdout"
+    },
+    {
+      "case": "21975-2",
+      "expected_objects": [
+        21975
+      ],
+      "kind": "text-to-image",
+      "language": "zh",
+      "query": "找出顶上有细长尖刺的金属头盔照片。",
+      "split": "holdout"
+    },
+    {
+      "case": "14430-0",
+      "expected_objects": [
+        14430
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the original photograph of a chair.",
+      "split": "holdout"
+    },
+    {
+      "case": "14430-1",
+      "expected_objects": [
+        14430
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the picture of the dark wooden seat with floral upholstery and a tall slatted back.",
+      "split": "holdout"
+    },
+    {
+      "case": "14430-2",
+      "expected_objects": [
+        14430
+      ],
+      "kind": "text-to-image",
+      "language": "zh",
+      "query": "找那张带花纹软垫、黑色木框椅子的图片。",
+      "split": "holdout"
+    },
+    {
+      "case": "195357-0",
+      "expected_objects": [
+        195357
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the original photograph of a dragon sculpture.",
+      "split": "holdout"
+    },
+    {
+      "case": "195357-1",
+      "expected_objects": [
+        195357
+      ],
+      "kind": "text-to-image",
+      "language": "en",
+      "query": "Find the image of the winged creature standing on a small base with its mouth open.",
+      "split": "holdout"
+    },
+    {
+      "case": "195357-2",
+      "expected_objects": [
+        195357
+      ],
+      "kind": "text-to-image",
+      "language": "zh",
+      "query": "找出张嘴、长翅膀的龙形雕像照片。",
+      "split": "holdout"
+    },
+    {
+      "case": "violin-unseen-back-view",
+      "expected_objects": [
+        500905
+      ],
+      "kind": "image-to-image",
+      "language": "image",
+      "query_image": "500905-query.jpg",
+      "query_image_sha256": "3df42e8bdeef47ecb89bd5e9630ed779d7faa94fe912d2b345505a1a919eb504",
+      "query_image_url": "https://images.metmuseum.org/CRDImages/mi/web-large/DP230470.jpg",
+      "split": "holdout"
+    },
+    {
+      "case": "two-instruments",
+      "expected_objects": [
+        500905,
+        500553
+      ],
+      "kind": "multi-source",
+      "language": "en",
+      "query": "Find both the original photograph of the violin and the catalogue record for a mandolin.",
+      "relevance_groups": [
+        [
+          500905
+        ],
+        [
+          208685,
+          500553,
+          500863,
+          501251,
+          501321
+        ]
+      ],
+      "split": "holdout"
+    },
+    {
+      "case": "two-original-images",
+      "expected_objects": [
+        21975,
+        195357
+      ],
+      "kind": "multi-source",
+      "language": "en",
+      "query": "Find the original photographs of the helmet and the dragon sculpture.",
+      "split": "holdout"
+    }
+  ],
+  "catalogue_sha256": "fa6e5aa4ad0f7a7d01672772d168320a25133acc5d9a040a37e4c838427ac2eb",
+  "created_at": "2026-10-30T02:40:12.554210+00:00",
+  "documentation": "https://metmuseum.github.io/",
+  "license": "CC0",
+  "protocol": {
+    "catalogue_text_distractors": 34,
+    "development_image_objects": [
+      13404,
+      191965
+    ],
+    "development_queries": 6,
+    "heldout_image_objects": [
+      500905,
+      21975,
+      14430,
+      195357
+    ],
+    "heldout_queries": 15,
+    "images": 6,
+    "labels": "Human catalogue classes plus manually verified visible attributes; queries written before any model calls or retrieval scoring.",
+    "limitations": "Small museum-object sample, not a daily-life/document/OCR benchmark or an official AML score. Multiple queries per image are correlated.",
+    "separation": "No target catalogue text is indexed for the six image-only records. Images and query labels were newly introduced to this project; model pretraining exposure is unknown."
+  },
+  "records": [
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "image_file": "13404.jpg",
+      "image_sha256": "369fbe30d1ab05990d7e86f4a0ed7a1f5f9227df87de05973415914fb6147b60",
+      "input_modality": "image-only",
+      "isPublicDomain": true,
+      "medium": "Britannia metal",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/13404",
+      "objectDate": "1854–65",
+      "objectID": 13404,
+      "objectName": "Teapot",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/13404",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/249712.jpg",
+      "sampling_term": "teapot",
+      "tags": null,
+      "title": "Teapot"
+    },
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Britannia metal",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/13405",
+      "objectDate": "1854–65",
+      "objectID": 13405,
+      "objectName": "Teapot",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/13405",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/249713.jpg",
+      "sampling_term": "teapot",
+      "tags": null,
+      "title": "Teapot"
+    },
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Earthenware",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/14358",
+      "objectDate": "1880–89",
+      "objectID": 14358,
+      "objectName": "Teapot",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/14358",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA6051.jpg",
+      "sampling_term": "teapot",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300011892",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q33971",
+          "term": "Leaves"
+        }
+      ],
+      "title": "Teapot"
+    },
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Earthenware",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/14359",
+      "objectDate": "1880–89",
+      "objectID": 14359,
+      "objectName": "Teapot",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/14359",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA6052.jpg",
+      "sampling_term": "teapot",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300011892",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q33971",
+          "term": "Leaves"
+        }
+      ],
+      "title": "Teapot"
+    },
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Ceramic",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/17230",
+      "objectDate": "1879–83",
+      "objectID": 17230,
+      "objectName": "Teapot",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/17230",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA3393.jpg",
+      "sampling_term": "teapot",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300266506",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q5113",
+          "term": "Birds"
+        },
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300311500",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q670887",
+          "term": "Bamboo"
+        }
+      ],
+      "title": "Teapot"
+    },
+    {
+      "classification": "Chordophone-Lute-bowed-unfretted",
+      "culture": "Italian",
+      "department": "Musical Instruments",
+      "image_file": "500905.jpg",
+      "image_sha256": "58c68e4045ce1973e8dc9e277f012f0da9a2506440a213c633ab7792fcecb14d",
+      "input_modality": "image-only",
+      "isPublicDomain": true,
+      "medium": "Spruce, maple, ebony",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/500905",
+      "objectDate": "1783",
+      "objectID": 500905,
+      "objectName": "Violin",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/500905",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/DP230469.jpg",
+      "sampling_term": "violin",
+      "tags": null,
+      "title": "Violin"
+    },
+    {
+      "classification": "Chordophone-Lute-bowed-unfretted",
+      "culture": "French",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "wood.",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/501575",
+      "objectDate": "18th century",
+      "objectID": 501575,
+      "objectName": "Miniature Violin",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/501575",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/MUS93A2.JPG",
+      "sampling_term": "violin",
+      "tags": null,
+      "title": "Violin"
+    },
+    {
+      "classification": "Chordophone-Lute-bowed-unfretted",
+      "culture": "German",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Wood, metal",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/501587",
+      "objectDate": "late 19th century",
+      "objectID": 501587,
+      "objectName": "Violin",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/501587",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/Mus98A.jpg",
+      "sampling_term": "violin",
+      "tags": null,
+      "title": "Violin"
+    },
+    {
+      "classification": "Chordophone-Lute-bowed-unfretted",
+      "culture": "American",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Wood",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/501878",
+      "objectDate": "19th century",
+      "objectID": 501878,
+      "objectName": "Fiddle",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/501878",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/DP-21053-001.jpg",
+      "sampling_term": "violin",
+      "tags": null,
+      "title": "Violin"
+    },
+    {
+      "classification": "Chordophone-Lute-bowed-unfretted",
+      "culture": "Melanesian (New Ireland, Papua New Guinean)",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Wood",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/501965",
+      "objectDate": "late 19th century",
+      "objectID": 501965,
+      "objectName": "Violin",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/501965",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/DP-21581-001.jpg",
+      "sampling_term": "violin",
+      "tags": null,
+      "title": "Violin"
+    },
+    {
+      "classification": "Ceramics-Pottery",
+      "culture": "",
+      "department": "European Sculpture and Decorative Arts",
+      "image_file": "191965.jpg",
+      "image_sha256": "4e677e15658695bece4c086304fdb6c0f1f4c2978564542792cd9c3f77bd35c8",
+      "input_modality": "image-only",
+      "isPublicDomain": true,
+      "medium": "Lead-glazed earthenware (creamware)",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/191965",
+      "objectDate": "ca. 1780",
+      "objectID": 191965,
+      "objectName": "Figure",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/191965",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-17550-003.jpg",
+      "sampling_term": "cat",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300265960",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q146",
+          "term": "Cats"
+        }
+      ],
+      "title": "Cat"
+    },
+    {
+      "classification": "Ceramics-Pottery",
+      "culture": "",
+      "department": "European Sculpture and Decorative Arts",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Salt-glazed stoneware",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/197494",
+      "objectDate": "ca. 1745",
+      "objectID": 197494,
+      "objectName": "Figure",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/197494",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-1143-004.jpg",
+      "sampling_term": "cat",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300265960",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q146",
+          "term": "Cats"
+        }
+      ],
+      "title": "Cat"
+    },
+    {
+      "classification": "Ceramics-Pottery",
+      "culture": "",
+      "department": "European Sculpture and Decorative Arts",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Salt-glazed stoneware",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/197495",
+      "objectDate": "ca. 1745",
+      "objectID": 197495,
+      "objectName": "Figure",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/197495",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-1143-006.jpg",
+      "sampling_term": "cat",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300265960",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q146",
+          "term": "Cats"
+        }
+      ],
+      "title": "Cat"
+    },
+    {
+      "classification": "Ceramics-Pottery",
+      "culture": "",
+      "department": "European Sculpture and Decorative Arts",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Salt-glazed stoneware",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/197496",
+      "objectDate": "ca. 1745",
+      "objectID": 197496,
+      "objectName": "Figure",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/197496",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-13455-009.jpg",
+      "sampling_term": "cat",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300265960",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q146",
+          "term": "Cats"
+        }
+      ],
+      "title": "Cat"
+    },
+    {
+      "classification": "Ceramics-Pottery",
+      "culture": "",
+      "department": "European Sculpture and Decorative Arts",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Lead-glazed earthenware",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/199446",
+      "objectDate": "ca. 1745",
+      "objectID": 199446,
+      "objectName": "Figure",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/199446",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/132687.jpg",
+      "sampling_term": "cat",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300265960",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q146",
+          "term": "Cats"
+        }
+      ],
+      "title": "Cat"
+    },
+    {
+      "classification": "Helmets",
+      "culture": "Southern Russian or Iranian",
+      "department": "Arms and Armor",
+      "image_file": "21975.jpg",
+      "image_sha256": "ed4771a44619a8c50f6b493b1ed452424c9fcc6350cd0a7ab0998cd81510993c",
+      "input_modality": "image-only",
+      "isPublicDomain": true,
+      "medium": "Steel, iron, copper alloy, leather",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/21975",
+      "objectDate": "early 16th century",
+      "objectID": 21975,
+      "objectName": "Helmet",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/21975",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/aa/web-large/DP152914.jpg",
+      "sampling_term": "helmet",
+      "tags": null,
+      "title": "Helmet"
+    },
+    {
+      "classification": "Helmets",
+      "culture": "Japanese",
+      "department": "Arms and Armor",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Iron, lacquer, silk",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/22157",
+      "objectDate": "17th century",
+      "objectID": 22157,
+      "objectName": "Helmet",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/22157",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/aa/web-large/LC-13_112_9-007.jpg",
+      "sampling_term": "helmet",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300249063",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q19939",
+          "term": "Tigers"
+        }
+      ],
+      "title": "Helmet"
+    },
+    {
+      "classification": "Helmets",
+      "culture": "Turkish",
+      "department": "Arms and Armor",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Steel, copper alloy",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/22214",
+      "objectDate": "ca. 1580",
+      "objectID": 22214,
+      "objectName": "Helmet",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/22214",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/aa/web-large/DP151773.jpg",
+      "sampling_term": "helmet",
+      "tags": null,
+      "title": "Helmet"
+    },
+    {
+      "classification": "Helmets",
+      "culture": "Japanese",
+      "department": "Arms and Armor",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Iron, copper, gold",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/23026",
+      "objectDate": "5th century",
+      "objectID": 23026,
+      "objectName": "Helmet",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/23026",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/aa/web-large/DP-18127-002.jpg",
+      "sampling_term": "helmet",
+      "tags": null,
+      "title": "Helmet"
+    },
+    {
+      "classification": "Helmets",
+      "culture": "Turkish",
+      "department": "Arms and Armor",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Steel, copper, brass",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/24003",
+      "objectDate": "16th–17th century",
+      "objectID": 24003,
+      "objectName": "Helmet",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/24003",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/aa/web-large/36.25.69_001Aug2015.jpg",
+      "sampling_term": "helmet",
+      "tags": null,
+      "title": "Helmet"
+    },
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "image_file": "14430.jpg",
+      "image_sha256": "21fea55fc0a0f6757d3f55f7a9cac282d9531f1eb66455673cf352dce5e1ce83",
+      "input_modality": "image-only",
+      "isPublicDomain": true,
+      "medium": "Ebonized cherry, marquetry of lighter woods, gilding",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/14430",
+      "objectDate": "1877–79",
+      "objectID": 14430,
+      "objectName": "Chair",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/14430",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/DT181.jpg",
+      "sampling_term": "chair",
+      "tags": null,
+      "title": "Chair"
+    },
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Rosewood; marquetry of various woods; gilding composition material",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/14984",
+      "objectDate": "1869–70",
+      "objectID": 14984,
+      "objectName": "Side Chair",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/14984",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/DP332475.jpg",
+      "sampling_term": "chair",
+      "tags": null,
+      "title": "Chair"
+    },
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Oak",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/1648",
+      "objectDate": "ca. 1860",
+      "objectID": 1648,
+      "objectName": "Chair",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/1648",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/235630.jpg",
+      "sampling_term": "chair",
+      "tags": null,
+      "title": "Chair"
+    },
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Mahogany, ebony inlay",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/1658",
+      "objectDate": "ca. 1825",
+      "objectID": 1658,
+      "objectName": "Chair",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/1658",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA5771.jpg",
+      "sampling_term": "chair",
+      "tags": null,
+      "title": "Chair"
+    },
+    {
+      "classification": "",
+      "culture": "American",
+      "department": "The American Wing",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Mahogany, maple",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/1659",
+      "objectDate": "1760–80",
+      "objectID": 1659,
+      "objectName": "Chair",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/1659",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/246647.jpg",
+      "sampling_term": "chair",
+      "tags": null,
+      "title": "Chair"
+    },
+    {
+      "classification": "Sculpture-Bronze",
+      "culture": "",
+      "department": "European Sculpture and Decorative Arts",
+      "image_file": "195357.jpg",
+      "image_sha256": "b615e257caa2bf78ae6313518afb7287ce0caddee8f407295caa15980aa3dee5",
+      "input_modality": "image-only",
+      "isPublicDomain": true,
+      "medium": "Bronze",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/195357",
+      "objectDate": "early 17th century",
+      "objectID": 195357,
+      "objectName": "Statuette",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/195357",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/DP-120-002.jpg",
+      "sampling_term": "dragon",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300375726",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q7559",
+          "term": "Dragons"
+        }
+      ],
+      "title": "Dragon"
+    },
+    {
+      "classification": "Ceramics-Pottery",
+      "culture": "",
+      "department": "European Sculpture and Decorative Arts",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Maiolica (tin-glazed earthenware)",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/197234",
+      "objectDate": "probably ca. 1550",
+      "objectID": 197234,
+      "objectName": "Figure",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/197234",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/LC-32_100_386.jpg",
+      "sampling_term": "dragon",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300375726",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q7559",
+          "term": "Dragons"
+        }
+      ],
+      "title": "Dragon"
+    },
+    {
+      "classification": "Sculpture-Bronze",
+      "culture": "",
+      "department": "European Sculpture and Decorative Arts",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Bronze",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/205197",
+      "objectDate": "19th–20th century",
+      "objectID": 205197,
+      "objectName": "Statuette",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/205197",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/195432.jpg",
+      "sampling_term": "dragon",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300375726",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q7559",
+          "term": "Dragons"
+        }
+      ],
+      "title": "Dragon"
+    },
+    {
+      "classification": "Jade",
+      "culture": "China",
+      "department": "Asian Art",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Jade",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/43084",
+      "objectDate": "late 19th–early 20th century",
+      "objectID": 43084,
+      "objectName": "Dragon",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/43084",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/LC-16_144_13-01.jpg",
+      "sampling_term": "dragon",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300375726",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q7559",
+          "term": "Dragons"
+        }
+      ],
+      "title": "Dragon"
+    },
+    {
+      "classification": "Codices",
+      "culture": "",
+      "department": "Islamic Art",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Ink and opaque watercolor on paper",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/451896",
+      "objectDate": "16th–17th century",
+      "objectID": 451896,
+      "objectName": "Illustrated single work",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/451896",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/sf67-18r.jpg",
+      "sampling_term": "dragon",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300375726",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q7559",
+          "term": "Dragons"
+        }
+      ],
+      "title": "Dragon"
+    },
+    {
+      "classification": "Crèche",
+      "culture": "",
+      "department": "European Sculpture and Decorative Arts",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Wood",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/208685",
+      "objectDate": "18th century",
+      "objectID": 208685,
+      "objectName": "Crèche accessory",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/208685",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/es/web-large/LC-2024_419_32-001.jpg",
+      "sampling_term": "mandolin",
+      "tags": null,
+      "title": "Mandolin"
+    },
+    {
+      "classification": "Chordophone-Lute-plucked-fretted",
+      "culture": "Italian",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Spruce, maple, tortoiseshell, mother-of-pearl, ivory",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/500553",
+      "objectDate": "ca. 1770",
+      "objectID": 500553,
+      "objectName": "Mandolin",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/500553",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/DP234545.jpg",
+      "sampling_term": "mandolin",
+      "tags": null,
+      "title": "Mandolin"
+    },
+    {
+      "classification": "Chordophone-Lute-plucked-fretted",
+      "culture": "European",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Wood, metal",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/500863",
+      "objectDate": "19th century",
+      "objectID": 500863,
+      "objectName": "Mandolin",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/500863",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/190793.jpg",
+      "sampling_term": "mandolin",
+      "tags": null,
+      "title": "Mandolin"
+    },
+    {
+      "classification": "Chordophone-Lute-plucked-fretted",
+      "culture": "Mexican",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Armadillo shell, wood, gut strings",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/501251",
+      "objectDate": "late 19th century",
+      "objectID": 501251,
+      "objectName": "Mandolin",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/501251",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/188955.jpg",
+      "sampling_term": "mandolin",
+      "tags": null,
+      "title": "Mandolin"
+    },
+    {
+      "classification": "Chordophone-Lute-plucked-fretted",
+      "culture": "U.S.A. or Brazil",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Wood, various materials",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/501321",
+      "objectDate": "late 19th century",
+      "objectID": 501321,
+      "objectName": "Mandolin",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/501321",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/MUS1392B.JPG",
+      "sampling_term": "mandolin",
+      "tags": null,
+      "title": "Mandolin"
+    },
+    {
+      "classification": "Aerophone-Blow Hole-end-blown flute (vertical)",
+      "culture": "Native American (Apache)",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Wood, skin, shell, beads",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/501191",
+      "objectDate": "19th century",
+      "objectID": 501191,
+      "objectName": "Flute (end blown flute)",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/501191",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/midp89.4.575.jpg",
+      "sampling_term": "flute",
+      "tags": null,
+      "title": "Flute (end blown flute)"
+    },
+    {
+      "classification": "Ivories and Bone",
+      "culture": "",
+      "department": "Islamic Art",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Bone; incised",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/449449",
+      "objectDate": "9th century",
+      "objectID": 449449,
+      "objectName": "Flute",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/449449",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/is/web-large/sf38-40-239a.jpg",
+      "sampling_term": "flute",
+      "tags": [
+        {
+          "AAT_URL": "http://vocab.getty.edu/page/aat/300042513",
+          "Wikidata_URL": "https://www.wikidata.org/wiki/Q11405",
+          "term": "Flutes"
+        }
+      ],
+      "title": "Flute"
+    },
+    {
+      "classification": "Aerophone",
+      "culture": "Burmese (Karenni)",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Bamboo",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/500789",
+      "objectDate": "late 19th century",
+      "objectID": 500789,
+      "objectName": "Flute",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/500789",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/midp89.4.220.jpg",
+      "sampling_term": "flute",
+      "tags": null,
+      "title": "Flute"
+    },
+    {
+      "classification": "Aerophone-Blow Hole-end-blown flute (vertical)",
+      "culture": "Indian",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Wood",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/500793",
+      "objectDate": "late 19th century",
+      "objectID": 500793,
+      "objectName": "Flute",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/500793",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/245910.jpg",
+      "sampling_term": "flute",
+      "tags": null,
+      "title": "Flute"
+    },
+    {
+      "classification": "Aerophone-Blow Hole-end-blown flute (vertical)",
+      "culture": "Malagasy",
+      "department": "Musical Instruments",
+      "input_modality": "catalogue-text",
+      "isPublicDomain": true,
+      "medium": "Bamboo",
+      "metadata_url": "https://collectionapi.metmuseum.org/public/collection/v1/objects/501143",
+      "objectDate": "late 19th century",
+      "objectID": 501143,
+      "objectName": "Flute",
+      "objectURL": "https://www.metmuseum.org/art/collection/search/501143",
+      "primaryImageSmall": "https://images.metmuseum.org/CRDImages/mi/web-large/259036.jpg",
+      "sampling_term": "flute",
+      "tags": null,
+      "title": "Flute"
+    }
+  ],
+  "source": "The Metropolitan Museum of Art Open Access"
+}
